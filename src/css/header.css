@@ -20,7 +20,7 @@ h1 {
     margin-top: 10px;
     height: 116px;
 }
-img {
+h1 > img {
     width: 300px;
     margin: 0 auto;
 }
