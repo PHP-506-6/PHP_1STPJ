@@ -5,6 +5,11 @@
 }
 
 body{
+    margin: 0 auto;
     width: 380px;
     min-height: 781px;
+}
+.container{
+    width: 100%;
+    background-color: aqua;
 }

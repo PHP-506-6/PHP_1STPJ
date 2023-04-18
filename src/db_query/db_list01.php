@@ -1,5 +1,5 @@
 <?php
-    include_once("../common/db_common.php"); // 디버그용
+    // include_once("../common/db_common.php"); // 디버그용
 //----------------------------------
 //함수명 : list01_print01()
 //기능 : 모든 리스트 출력

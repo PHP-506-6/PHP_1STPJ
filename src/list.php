@@ -8,8 +8,6 @@
     
     $arr = array();
     $arr_list = list01_print01($arr);
-    var_dump($arr_list);
-
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -23,5 +21,10 @@
 </head>
 <body>
     <?php include_once(URL_HEADER)?>
+    <div class="container">
+        <div class="inner">
+            
+        </div>
+    </div>
 </body>
 </html>
