@@ -7,7 +7,7 @@
     include_once(URL_FUNC);
     
     $arr = array();
-    $arr_list = list01_print01($arr);
+    $arr_list = list01_print01($arr); //전체 데이터 출력
 ?>
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,8 +22,30 @@
 <body>
     <?php include_once(URL_HEADER)?>
     <div class="container">
+        <div class="line"></div>
         <div class="inner">
-            
+            <!-- 리스트 출력 -->
+            <?php foreach ($arr_list as $val) { ?>
+                <div class="box">
+                    <div class="box-title">
+                        <p><?php echo $val["list_title"]?></p>
+                    </div>
+                    <div class="box-content">
+                        <ul>
+                            <li><?php echo $val["list_contents"]?></li>
+                            <?php if($val["ex_num"] != null || $val["ex_set"] != null) {?>
+                                <li><?php echo $val["ex_num"]."*".$val["ex_set"]?></li>
+                            <?php } ?>
+                            <li><?php echo $val["ex_min"]?></li>
+                        </ul>
+                    </div>
+                </div>
+            <?php   } ?>
+            <!--  <!-- //리스트 출력 -->
+        </div>
+        <div class="btn-group">
+        <a href="" title="Button border blue/green" class="button btnFloat btnBlueGreen">Float</a>
+        <a href="" title="Button border blue/green" class="button btnFloat btnBlueGreen">Float</a>
         </div>
     </div>
 </body>
