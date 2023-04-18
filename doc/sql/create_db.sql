@@ -16,11 +16,8 @@ CREATE TABLE do_list(
 	,ex_hour CHAR(1)
 	,ex_min CHAR(2)
 	,com_flg CHAR(1) NOT NULL DEFAULT '0'
-	,del_flg CHAR(1) NOT NULL DEFAULT '0'
 	,write_date DATETIME NOT null
 	,update_date datetime
 	,del_date DATETIME
 	);
-	
 
-	
