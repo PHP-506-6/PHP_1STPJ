@@ -37,10 +37,16 @@ function modify02_print01()
 
 // ------------------------------------------------
 // 함수명	: modify02_excute01
-// 기능		: 목표 정보 수정
+// 기능		: 목표 정보 수정 (update)
 // 파라미터	: Array              &$param_arr
 // 리턴값	: INT/STRING		$result_cnt/ERRMSG
 // -------------------------------------------------
-
+function modify02_excute01( &$param_arr )
+{
+    $sql =
+        " UPDATE "
+        ." obj_list "
+        ;
+}
 
 ?>
