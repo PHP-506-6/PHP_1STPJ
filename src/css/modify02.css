@@ -10,5 +10,46 @@
 
 .goal_text {
     display: inline-block;
-    margin: 100px 32px;
+    margin: 150px 32px;
+}
+
+/* Button */
+.btn_area {
+    position: relative;
+    top: 200px;
+}
+button {
+    width: 120px;
+    height: 50px;
+    position: absolute;
+    bottom: 40px;
+    color: #f8f8f8;
+    background: #b10000;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 0;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.save_btn {
+    left: 50px;
+}
+
+.cancel_btn {
+    right: 50px;
+}
+
+button > a {
+    text-decoration: none;
+    color: #f8f8f8;
+}
+
+button:hover {
+    margin-top: -2px;
+    margin-left: 0px;
+    transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+    box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
 }

@@ -46,7 +46,32 @@ function modify02_excute01( &$param_arr )
     $sql =
         " UPDATE "
         ." obj_list "
+        ." SET "
+        ." obj_contents = :obj_contents "
         ;
+    $arr_prepare =
+        array(
+            ":obj_contents" => $param_arr["obj_contents"]
+        );
+
+    $conn = null;
+    try {
+        db_conn( $conn );
+        $conn->beginTransaction(); // Transaction 시작
+        $stmt = $conn->prepare( $sql );
+        $result = $stmt->execute( $arr_prepare );
+        $conn->commit();
+    }
+    catch ( Exception $e )
+    {
+        $conn->rollback();
+        return $e->getMessage();
+    }
+    finally{
+        $conn = null;
+    }
+
+    return $result;
 }
 
 ?>
