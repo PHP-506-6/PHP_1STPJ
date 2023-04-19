@@ -36,17 +36,18 @@ p.date {
 /* 목표 */
 .goal_text {
     width: 325px;
-    height: 37px;
+    height: 45px;
     border: 3px solid #b10000;
     border-radius: 10px;
     background-color: #fff;
     margin: 5px auto;
 }
-input.goal {
-    width: 322px;
-    height: 30px;
+textarea.goal {
+    width: 319px;
     font-size: 16px;
     border-radius: 10px;
     border: none;
     outline: none;
+    resize: none;
+    overflow-y: hidden;
 }

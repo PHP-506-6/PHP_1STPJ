@@ -1,6 +1,6 @@
 <?php
 
-include_once("../common/db_common.php"); // 디버그용
+// include_once("../common/db_common.php"); // 디버그용
 
 // ------------------------------------------------
 // 함수명	: modify02_print01
@@ -8,7 +8,7 @@ include_once("../common/db_common.php"); // 디버그용
 // 파라미터	: 없음
 // 리턴값	: Array     $result
 // -------------------------------------------------
-function modify02_print01( )
+function modify02_print01()
 {
     $sql =
     " SELECT "
