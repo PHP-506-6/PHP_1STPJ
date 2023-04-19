@@ -7,13 +7,7 @@
 //리턴값 : INT $result
 //----------------------------------
 function list01_print01(&$param_arr){
-    $sql=" SELECT list_no 
-                ,list_title
-                ,list_contents
-                ,ex_set
-                ,ex_num
-                ,ex_hour
-                ,ex_min
+    $sql=" SELECT *
             FROM do_list
             LIMIT :limit_num OFFSET :offset ";
 
