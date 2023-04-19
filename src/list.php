@@ -68,7 +68,7 @@
                 <?php foreach ($arr_list as $val) { ?>
                     <div class="box">
                         <div class="box-title">
-                            <a href="" class="a-title"><p><?php echo $val["list_title"]?></p></a>
+                            <a href="modify01.php?list_no=<?php echo $val["list_no"]?>" class="a-title"><p><?php echo $val["list_title"]?></p></a>
                         </div>
                         <div class="box-content">
                             <ul>
