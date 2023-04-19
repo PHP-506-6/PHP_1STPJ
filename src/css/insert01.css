@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-weight: 900;
+    font-weight: 600;
 }
 
 body{
@@ -28,22 +28,12 @@ body{
     background-color: #fff;
     border-radius: 25px 25px 0 0;
 }
-
-.container .line{
-    width: 45px;
-    border-radius: 15px;
-    margin: 0 auto;
-    height: 5px;
-    text-align: center;
-    background-color: #b10000;
-}
-
 .form_box1
 {   
-    margin-top : 40px;
+    margin-top : 20px;
     display : grid;
     grid-template-columns: 1fr 6fr;
-    grid-row-gap: 10px;
+    grid-row-gap: 20px;
     align-items: center;
 }
 
@@ -66,7 +56,7 @@ body{
     background-color: #f8f8f8;
     border-radius: 10px;
     box-shadow: 0px 3px 2px 1px rgba(0,0,0,0.2);
-    margin-top:10px;
+    margin-top:30px;
     display : grid;
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: repeat(3,1fr);
@@ -102,9 +92,11 @@ button
     bottom : 40px;
     color : #f8f8f8;
     background: #b10000;
-    border-radius: 10px;
+    border-radius: 5px;
+    font-size: 16px;
     border: 0;
     transition: all 0.2s ;
+    cursor: pointer;
 }
 
 .save_btn
