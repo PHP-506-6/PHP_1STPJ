@@ -26,6 +26,9 @@ a{
 .btn-next span{
   font-size: 20px;
 }
+.active{
+  text-decoration: line-through;
+}
 .container{
     position: absolute;
     border: 3px solid black;

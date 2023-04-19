@@ -57,6 +57,7 @@
     <link rel="stylesheet" href="css/list.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" />
 </head>
 <body>
     <?php include_once(URL_HEADER)?>
@@ -88,7 +89,7 @@
             <div class="inner">
                 <!-- 리스트 출력 -->
                 <?php foreach ($arr_list as $val) { ?>
-                    <div class="box">
+                    <div class="box <?php if($val["com_flg"] === '1'){ echo 'active';}?>">
                         <div class="box-title">
                             <a href="modify01.php?list_no=<?php echo $val["list_no"]?>" class="a-title"><p><?php echo $val["list_title"]?></p></a>
                         </div>

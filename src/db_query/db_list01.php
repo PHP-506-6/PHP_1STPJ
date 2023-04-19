@@ -9,6 +9,7 @@
 function list01_print01(&$param_arr){
     $sql=" SELECT *
             FROM do_list
+            ORDER BY com_flg,list_no
             LIMIT :limit_num OFFSET :offset ";
 
     $arr_prepare = array(":limit_num" => $param_arr["limit_num"]
