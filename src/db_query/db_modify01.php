@@ -1,5 +1,5 @@
 <?php
-// include_once("../common/db_common.php");
+// include_once("../common/db_common.php");         // 디버그용 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 // 함수명  : update_list
 // 기능    : 게시판 특정 게시글 수정
@@ -68,12 +68,13 @@ function select_obj_list()
             FROM obj_list
             ;";
 
+    $arr_prepare=array();
     $conn = null;
     try 
     {
         db_conn( $conn );
-        $stmt = $conn->query( $sql );
-        $stmt->execute();
+        $stmt = $conn->prepare( $sql );
+        $stmt->execute($arr_prepare);
         $result = $stmt->fetchALL();
     } 
     catch (Exception $e) 

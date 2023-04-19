@@ -32,13 +32,7 @@
     <link rel="stylesheet" href="css/insert01.css">
 </head>
 <body>
-    <header>
-        <h1><img src="../src/img/logo.png" /></h1>
-        <p class="date">TODAY <?php echo date("Y-m-d") ?></p>
-        <div class="goal_text">
-            <?php echo $result_list["obj_contents"]?>
-        </div>
-    </header>
+    <?php include_once(URL_HEADER) ?>
     <div class="container">
         <form method="post" action="insert01.php">
             <div class="form_box1">

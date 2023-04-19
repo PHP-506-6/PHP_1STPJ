@@ -22,11 +22,16 @@
             $list_no = $_GET["list_no"];
         }
             $result_info = select_list_info_no( $list_no );
-        }
-        else                                             // POST일 때 
-        {
+    }
+    else                                             // POST일 때 
+    {
             
             $arr_post = $_POST;
+            // $arr_get = $_GET;
+            if(is_null($arr_post['com_flg']))
+            {
+                $arr_post['com_flg'] = "0";
+            }
             $arr_info = 
                     array(
                         "list_title" => $arr_post["list_title"]
@@ -38,14 +43,23 @@
                         ,"com_flg" => $arr_post["com_flg"]
                         ,"list_no" => $arr_post["list_no"]
                     );
-
+                    // if (isset($arr_post['submit'])) {
+                    //     // 체크박스가 체크된 상태인 경우
+                    //     if (isset($arr_post['com_flg'])) {
+                    //         // 체크박스의 'checked' 속성을 제거
+                    //         echo "체크박스가 체크된 상태입니다.";
+                    //     }
+                    //     // 체크박스가 체크되지 않은 상태인 경우
+                    //     else {
+                    //         echo "체크박스가 체크되지 않은 상태입니다.";
+                    //     }
             
             $result_update = update_list( $arr_info );      // UPDATE
-            
-            header( "Location: list.php" );                 // list.php로 redirect
+            // var_dump($arr_post);
+            header( "Location: list.php");                 // list.php로 redirect
             exit();                                         // 종료
 
-        }
+    }
 
 ?>
 
@@ -61,13 +75,7 @@
         <link rel="stylesheet" href="css/modify01.css">
     </head>
     <body>
-        <header>
-            <h1><img src="../src/img/logo.png" /></h1>
-            <p class="date">TODAY <?php echo date("Y-m-d") ?></p>
-            <div class="goal_text">
-                <?php echo $result_list["obj_contents"]?>
-            </div>
-        </header>
+        <?php include_once(URL_HEADER) ?>
         <main>
             <form method="post" action="modify01.php">
                 <input type="hidden" name="list_no" value="<?php echo $result_info['list_no'] ?>" >
@@ -95,10 +103,18 @@
                     <label  for="ex_min">분</label>
             
                     <span>완료 여부</span>
-                    <input type="checkbox" name="com_flg" value="1" <?php if($result_info['com_flg'] === "1" ){ echo 'checked';}?>>
+                    <input type="checkbox" name="com_flg" value="1"
+                    <?php
+                    if( $result_info['com_flg'] === "1" )
+                    {
+                        echo "checked";
+                    }
+                    ?>
+                    >     
+                     <!-- 체크시 com_flg 값 1로 변경되고 com_flg가 1일시에 checked 상태 유지 -->
                     <label for="com_flg">완료</label>
 
-                    <button type = submit>SAVE</button>
+                    <button type = submit name="submit" >SAVE</button>
                     <button type = button><a href="delete01.php?list_no=<?php echo $result_info['list_no']?>"></a>DELETE</button>
                     <button type = button><a href="list.php" >CANCEL</a></button>
             </div>

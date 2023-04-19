@@ -85,12 +85,14 @@ function select_obj_list()
             FROM obj_list
             ORDER BY obj_no DESC LIMIT 1 ;";
 
+    $arr_prepare=array();
+
     $conn = null;
     try 
     {
         db_conn( $conn );
-        $stmt = $conn->query( $sql );
-        $stmt->execute();
+        $stmt = $conn->prepare( $sql );
+        $stmt->execute( $arr_prepare);
         $result = $stmt->fetchALL();
     } 
     catch (Exception $e) 
