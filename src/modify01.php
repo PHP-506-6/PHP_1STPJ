@@ -1,10 +1,10 @@
 <?php
     define("DOC_ROOT",$_SERVER["DOCUMENT_ROOT"]."/");//root 설정
     define("URL_DB",DOC_ROOT."first_pj/src/common/db_common.php");// db연결
-    define("URL_DB_MODIFY01",DOC_ROOT."first_pj/src/db_query/db_modify01.php"); //function 연결
+    define("URL_DB_COMMON_QUERY",DOC_ROOT."first_pj/src/db_query/db_common_query.php"); // function 연결
     define("URL_HEADER",DOC_ROOT."first_pj/src/header.php"); //header 연결
     include_once(URL_DB);
-    include_once(URL_DB_MODIFY01);
+    include_once(URL_DB_COMMON_QUERY);
     
     // request method를 가져옴
     $http_method = $_SERVER["REQUEST_METHOD"];          //method 요청

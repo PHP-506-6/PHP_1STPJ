@@ -1,0 +1,63 @@
+.form_box1
+{   
+    margin-top : 20px;
+    display : grid;
+    grid-template-columns: 1fr 6fr;
+    grid-row-gap: 20px;
+    align-items: center;
+}
+
+.form_box1 input
+{
+    height : 40px;
+    border : 1px solid #000;
+    border-radius: 10px;
+    outline: none;
+    padding :  0 10px;
+    
+}
+
+.form_box1 label
+{
+    margin-left : 5px;
+    position : relative;
+}
+
+.form_box1 label:before{
+    content:'*';
+    color :#000;
+    position:absolute;
+    left: -10px;
+}
+
+.form_box2
+{
+    width :330px;
+    height : 305px;
+    box-sizing: border-box;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0px 3px 2px 1px rgba(0,0,0,0.2);
+    margin-top:30px;
+}
+
+.form_box2 input
+{
+    width:60px;
+    height : 30px;
+    background-color: #f8f8f8;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000;
+    text-align: center;
+}
+
+.set_box, .num_box
+{
+    grid-column:3/6;
+}
+
+.box2_tit
+{
+    padding-left : 20px;
+}
