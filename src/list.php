@@ -5,7 +5,7 @@
     define("URL_HEADER",DOC_ROOT."first_pj/src/header.php"); //header 연결
     include_once(URL_DB);
     include_once(URL_DB_LIST01);
-
+    // ------------------ 페이징--------------------- 
     $arr_get = $_GET;
     //최초 페이지 열때 페이지 넘버
     if(array_key_exists("page_num",$arr_get)){
@@ -23,6 +23,7 @@
     $total_page = ceil($max_page_num / $limit_num);
     //보여줄 페이지 수
     $page_block = 3;
+    //1~6, 7~13 페이지 넘긴 만큼 데이터 보여줄 갯수
     $offset = ($page_num * $limit_num)- $limit_num;
     //현재 페이지 블럭수
     $now_page = ceil($page_num / $page_block);
@@ -38,13 +39,19 @@
     if($e_page_num > $total_page){ 
         $e_page_num = $total_page;
     }
+    // ------------------ end 페이징--------------------- 
+    $write_date = date('Ymd').'000000'; //= YYYYmmdd000000 형식
 
     $arr = array("limit_num" => $limit_num
                     ,"offset" => $offset
+                    ,"write_date" => $write_date
                 );
 
     $arr_list = list01_print01($arr); //전체 데이터 출력
     
+    //리스트페이지 열 때 이전날짜 데이터 자동 삭제
+    $arr_auto_del = array("write_date"=>$write_date);
+    delete_auto_data($arr_auto_del);
     
 ?>
 <!DOCTYPE html>
@@ -85,7 +92,7 @@
             <?php } ?>
              <!-- //다음 -->
         </div>
-        <form method="get" action="list.php">
+        <form method="post" action="list.php">
             <div class="inner">
                 <!-- 리스트 출력 -->
                 <?php foreach ($arr_list as $val) { ?>
@@ -97,18 +104,20 @@
                             <ul>
                                 <li><?php echo $val["list_contents"]?></li>
                                 <?php if($val["ex_num"] != null || $val["ex_set"] != null) {?>
-                                    <li><?php echo $val["ex_num"]."*".$val["ex_set"]?></li>
+                                    <li><?php echo $val["ex_num"]."*".$val["ex_set"]?> SET</li>
                                 <?php } ?>
-                                <li><?php echo $val["ex_min"]?></li>
+                                <?php if($val["ex_hour"] != null || $val["ex_min"] != null) {?>
+                                    <li><?php echo $val["ex_hour"]?>시간 <?php echo $val["ex_min"]?>분</li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
                 <?php   } ?>
+                <!--  <!-- //리스트 출력 -->
                 <div class="btn-group">
                     <a href="" class="button btnFloat1 btnRed">ALL DEL</a>
                     <a href="insert01.php" class="button btnFloat2 btnRed">INSERT</a>
                 </div>
-                <!--  <!-- //리스트 출력 -->
             </div>
         </form>
     </div> <!--end container -->

@@ -1,9 +1,9 @@
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 body{
     margin: 0 auto;
     position: relative;
@@ -13,19 +13,20 @@ a{
   text-decoration: none;
   color: #2e2e2e;
 }
+/* 페이지네이션 */
 .paging{
   text-align: center;
 }
-
 .btn-prev span{
-  font-size: 20px;
+  font-size: 16px;
 }
 .middle-page-num{
   font-size: 22px;
 }
 .btn-next span{
-  font-size: 20px;
+  font-size: 16px;
 }
+/* 취소선 표시 */
 .active{
   text-decoration: line-through;
 }
@@ -43,6 +44,7 @@ a{
 }
 
 .container .inner{
+    height: 590px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -55,9 +57,14 @@ a{
 .container .inner .box .box-title{
     width: 160px;
     padding: 5px;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 10px;
-    border: 2px solid black;
+    border: 2px solid #2e2e2e;
     border-radius: 10px;
+}
+.container .inner .box .box-title a:hover{
+  text-decoration: underline;
 }
 .container .inner .box .box-content{
     height: 100px;
@@ -75,6 +82,7 @@ a{
 .btn-group{
     display: flex;
     justify-content: space-between;
+    align-items: end;
     width: 100%;
     margin-top: 10px;
 }
@@ -102,7 +110,6 @@ a.button {
     content: 'ALL DEL';
     display: block;
     position: absolute;
-    top: 0;
     left: 0;
     width: 120px;
     height: 50px;
@@ -113,7 +120,6 @@ a.button {
     content: 'INSERT';
     display: block;
     position: absolute;
-    top: 0;
     left: 0;
     width: 120px;
     height: 50px;
