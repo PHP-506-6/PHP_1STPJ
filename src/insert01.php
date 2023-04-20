@@ -33,9 +33,9 @@
 </head>
 <body>
     <?php include_once(URL_HEADER) ?>
-    <div class="container">
-        <form method="post" action="insert01.php">
-            <div class="form_box1">
+    <div class="container_m">
+        <form method="post" action="insert01.php" class="frm_i">
+            <div class="form_box1_m">
                 <label for="list_title">제목</label>
                 <input type="text" name="list_title" id="list_title" required maxlength="50">
 
@@ -43,25 +43,25 @@
                 <input type="text" name="list_contents" id="list_contents" required maxlength="50">
 
             </div>
-            <div class="form_box2">
+            <div class="form_box2_i ">
                 
-                    <label class="box2_tit" for="ex_set">세트</label>
-                    <input type="text" name="ex_set" maxlength="2" id="ex_set" >
-                    <span class="set_box">SET</span>
+                    <label class="box2_tit_i" for="ex_set">세트</label>
+                    <input type="number" name="ex_set" maxlength="2" id="ex_set" >
+                    <span class="set_box_m">SET</span>
                 
-                    <label class="box2_tit" for="ex_num">횟수</label>
-                    <input type="text" name="ex_num" maxlength="3" id="ex_num" >
-                    <span class="num_box" >회</span>
+                    <label class="box2_tit_i" for="ex_num">횟수</label>
+                    <input type="number" name="ex_num" maxlength="3" id="ex_num" >
+                    <span class="num_box_i" >회</span>
                 
-                    <span  class="time_lab box2_tit">시간</span>
-                    <input class="time" type="text" name="ex_hour" maxlength="1" id="ex_hour" >
+                    <span  class="box2_tit_i">시간</span>
+                    <input  type="number" name="ex_hour" maxlength="1" id="ex_hour" >
                     <label for="ex_hour">시간</label>
-                    <input class="time" type="text" name="ex_min" maxlength="2" id="ex_min" >
+                    <input type="number" name="ex_min" maxlength="2" max="60" id="ex_min" >
                     <label  for="ex_min">분</label>
             </div>
-            <div class="btn_group">
-                <button type="submit">SAVE</button>
-                <a class="link_btn" href="list.php">CANCEL</a>
+            <div class="btn_group_i">
+                <button class="btn_i" type="submit">SAVE</button>
+                <a class="link_btn_i" href="list.php">CANCEL</a>
             </div>
         </form>
     </div>
