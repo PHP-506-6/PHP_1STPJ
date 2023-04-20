@@ -58,9 +58,9 @@ function update_list( &$param_arr )
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 // 함수     : select_list_info_no
-// 기능     : 게시판 특정 게시글 정보 검색 
+// 기능     : 특정 리스트 정보 출력
 // 파라미터 : INT &$param_no
-// 리턴값   : ARRAY $result
+// 리턴값   : ARRAY $result[0]
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
 function select_list_info_no( &$param_no )

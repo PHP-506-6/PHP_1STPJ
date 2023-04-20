@@ -55,6 +55,18 @@ form
     
 }
 
+.form_box1 label
+{
+    margin-left : 5px;
+    position : relative;
+}
+
+.form_box1 label:before{
+    content:'*';
+    color :#000;
+    position:absolute;
+    left: -10px;
+}
 
 /* 회색박스 */
 .form_box2
@@ -102,7 +114,6 @@ form
     justify-content: space-between;
     width: 100%;
     margin-top: 60px;
-
 }
 
 button 

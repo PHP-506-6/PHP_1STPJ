@@ -1,6 +1,5 @@
 <?php
-include_once(URL_DB);
-
+// include_once("../common/db_common.php");         // 디버그용 
 // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 // 함수명 : insert_list_info
 // 기능 : 새로운 리스트 생성
@@ -46,10 +45,6 @@ function insert_list_info( &$param_array )
         $stmt = $conn->prepare( $sql );
         $stmt->execute( $arr_prepare ); 
         $result_cnt = $stmt->rowCount();    //insert 성공하면 1 실패하면 0
-        if($result_cnt !== 1)   // insert 실패할 경우
-            {
-                throw new Exception ('rowCount ERROR');
-            }
         $conn->commit();
     }
     catch (Exception $e) 

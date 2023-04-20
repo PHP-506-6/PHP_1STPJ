@@ -12,11 +12,13 @@
     // GET 체크
 
     if( $http_method === "GET" )                        // GET일 때 
-    {
-        $list_no = 1;
+    {                                   
         if( array_key_exists("list_no",$_GET) )         // $_GET의 키에 list_no가 존재할 때 
         {
-            $list_no = $_GET["list_no"];
+            $list_no = $_GET["list_no"];                // $list_no를 $_GET["list_no"]  지정
+        }else
+        {
+            $list_no = 1;                               // 존재하지 않으면 list_no를 1로 지정
         }
             $result_info = select_list_info_no( $list_no );     // $_GET["list_no"]에 해당하는 정보를 가져옴
     }
@@ -65,7 +67,9 @@
         <?php include_once(URL_HEADER) ?>
         <div class="container" >
             <form method="post" action="modify01.php">
-                <input type="hidden" name="list_no" value="<?php echo $result_info['list_no'] ?>" >
+                <input type="hidden" name="list_no" value="<?php echo $result_info['list_no'] ?>" >     
+                <!-- 클릭한 리스트를 가져와야 하기 때문에 화면에 출력이 되지 않지만 
+                    리스트의 PK값을 가져와서 데이터를 출력 list_no가 없으면 어떤 데이터를 가져와야 하는지 모름-->
                 <div class="form_box1">
                     <label for="list_title">제목</label>
                     <input type="text" name="list_title" id="list_title" required maxlength="50" value="<?php echo $result_info['list_title'] ?>" >
@@ -89,16 +93,16 @@
                     <input class="time" type="text" name="ex_min" maxlength="2" id="ex_min" value="<?php echo $result_info['ex_min'] ?>" >
                     <label  for="ex_min">분</label>
             
-                    <span class="com_flg_tit box2_tit">완료 여부</span>
+                    <label for="com_flg" class="box2_tit" >완료 여부</label>
                     <input class="ch_box"type="checkbox" name="com_flg" value="1"
                     <?php
-                    if( $result_info['com_flg'] === "1" )   // com_flg가 "1"일 때 checkbox checked
+                    if( $result_info['com_flg'] === "1" )   // com_flg가 "1"일 때 속성에  checked 추가
                     {
                         echo "checked";
                     }
                     ?>
-                    >     
-                    <label for="com_flg">완료</label>
+                    >
+                    <i class="circle"></i>     
                 </div>
                 <div class="btn_group">
                     <button type ="submit">SAVE</button>
