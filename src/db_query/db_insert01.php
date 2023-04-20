@@ -1,9 +1,4 @@
 <?php
-//-----------------------------------------------------
-// 파일명 		: db_insert01.php
-// 기능			: 리스트 생성
-// 이력			: v001 : new - Mihyeon Kim
-//-----------------------------------------------------
 include_once(URL_DB);
 
 // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -71,43 +66,6 @@ function insert_list_info( &$param_array )
 }
 
 
-// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-// 함수명 : select_obj_list
-// 기능 : obj_list 출력
-// 파라미터 : X
-// 리턴값 : STRING $result[0]
-// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-
-function select_obj_list()
-{
-    $sql = " SELECT obj_contents
-            FROM obj_list
-            ORDER BY obj_no DESC LIMIT 1 ;";
-
-    $arr_prepare=array();
-
-    $conn = null;
-    try 
-    {
-        db_conn( $conn );
-        $stmt = $conn->prepare( $sql );
-        $stmt->execute( $arr_prepare);
-        $result = $stmt->fetchALL();
-    } 
-    catch (Exception $e) 
-    {
-        return $e->getMessage();
-    }
-    finally
-    {
-        $conn = null;//     데이터베이스 종료
-    }
-    return $result[0];
-}
-
-// select_obj_list();
-// echo $result;
 
 
 ?>

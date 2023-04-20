@@ -54,39 +54,7 @@ function update_list( &$param_arr )
     return $result_cnt;     //행의 개수 리턴 
 }
 
-// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-// 함수명 : select_obj_list
-// 기능 : 최신 obj_list 출력
-// 파라미터 : X
-// 리턴값 : STRING $result[0]
-// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-
-function select_obj_list()
-{
-    $sql = " SELECT obj_contents
-            FROM obj_list
-            ;";
-
-    $arr_prepare=array();
-    $conn = null;
-    try 
-    {
-        db_conn( $conn );
-        $stmt = $conn->prepare( $sql );
-        $stmt->execute($arr_prepare);
-        $result = $stmt->fetchALL();
-    } 
-    catch (Exception $e) 
-    {
-        return $e->getMessage();
-    }
-    finally
-    {
-        $conn = null;//     데이터베이스 종료
-    }
-    return $result[0];
-}
 
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 // 함수     : select_list_info_no
@@ -124,7 +92,8 @@ function select_list_info_no( &$param_no )
     }
     return $result[0];
 }
-$arr = 3;
+
+// $arr = 3;
 
 
 

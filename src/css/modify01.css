@@ -1,19 +1,16 @@
-/* *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
     font-weight: 600;
 }
-
 body{
     margin: 0 auto;
     position: relative;
     width: 390px;
 }
-
-.goal_text
+.goal
 {
     text-align: center;
+    padding: 10px 0;
+    height: 39px;
 }
 
 .container{
@@ -28,6 +25,8 @@ body{
     background-color: #fff;
     border-radius: 25px 25px 0 0;
 }
+
+/* 제목,내용 */
 .form_box1
 {   
     margin-top : 20px;
@@ -47,21 +46,23 @@ body{
     
 }
 
+/* 회색박스 */
+
 .form_box2
 {
-
     width :330px;
     height : 305px;
     box-sizing: border-box;
     background-color: #f8f8f8;
     border-radius: 10px;
     box-shadow: 0px 3px 2px 1px rgba(0,0,0,0.2);
-    margin-top:30px;
+    margin-top: 40px;
     display : grid;
     grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(3,1fr);
+    grid-template-rows: repeat(4,1fr);
     align-items: center;
 }
+
 
 .form_box2 input
 {
@@ -72,8 +73,8 @@ body{
     border: none;
     border-bottom: 1px solid #000;
     text-align: center;
-
 }
+
 .set_box, .num_box
 {
     grid-column:3/6;
@@ -82,14 +83,29 @@ body{
 .box2_tit
 {
     padding-left : 20px;
+    width : 100px;
 }
 
-button
+.ch_box
 {
-    width : 120px;
+    zoom: 0.7;
+    accent-color: #b10000;
+}
+
+/* button a */
+.btn_group
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 50px;
+
+}
+
+button 
+{
+    width : 90px;
     height : 50px;
-    position : absolute;
-    bottom : 40px;
     color : #f8f8f8;
     background: #b10000;
     border-radius: 5px;
@@ -97,29 +113,28 @@ button
     border: 0;
     transition: all 0.2s ;
     cursor: pointer;
-}
-
-.save_btn
-{
     left : 50px;
 }
 
-.cancel_btn
-{
-    right : 50px;
-}
-
-a
-{
-    text-decoration: none;
+.link_btn
+{   
+    line-height: 50px;
+    width : 90px;
+    height : 50px;
     color : #f8f8f8;
+    background: #b10000;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.2s ;
 }
 
-button:hover{
-margin-top: -2px;
-margin-left: 0px;
-transform: scale(1.1,1.1);
--ms-transform: scale(1.1,1.1);
--webkit-transform: scale(1.1,1.1);
-box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
-} */
+button:hover, a:hover
+{
+    margin-top: -2px;
+    margin-left: 0px;
+    transform: scale(1.1,1.1);
+    -ms-transform: scale(1.1,1.1);
+    -webkit-transform: scale(1.1,1.1);
+    box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+}

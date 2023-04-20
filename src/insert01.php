@@ -6,7 +6,7 @@
     include_once(URL_DB);
     include_once(URL_DB_INSERT);
     
-    $result_list = select_obj_list();                       //obj_list에서 가장 최근자료 출력
+
     $http_method = $_SERVER["REQUEST_METHOD"];              // method 요청
 
     if ( $http_method === "POST" )                          // POST일때 
@@ -59,8 +59,10 @@
                     <input class="time" type="text" name="ex_min" maxlength="2" id="ex_min" >
                     <label  for="ex_min">분</label>
             </div>
-            <button class="save_btn btnBlueGreen btnFloat" type="submit">SAVE</button>
-            <button  class="cancel_btn btnBlueGreen btnFloat" type="button" ><a href="list.php">CANCEL</a></button>
+            <div class="btn_group">
+                <button type="submit">SAVE</button>
+                <a class="link_btn" href="list.php">CANCEL</a>
+            </div>
         </form>
     </div>
 </body>
