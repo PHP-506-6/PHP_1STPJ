@@ -6,13 +6,10 @@
     include_once(URL_DB);
     include_once(URL_DB_MODIFY01);
     
-    $result_list = select_obj_list();
     // request method를 가져옴
     $http_method = $_SERVER["REQUEST_METHOD"];          //method 요청
     
     // GET 체크
-    // 셋팅값이 보이면 get방식 안보이면 post 방식
-
 
     if( $http_method === "GET" )                        // GET일 때 
     {
@@ -21,14 +18,15 @@
         {
             $list_no = $_GET["list_no"];
         }
-            $result_info = select_list_info_no( $list_no );
+            $result_info = select_list_info_no( $list_no );     // $_GET["list_no"]에 해당하는 정보를 가져옴
     }
     else                                             // POST일 때 
     {
             
             $arr_post = $_POST;
-            // $arr_get = $_GET;
-            if(is_null($arr_post['com_flg']))
+                                                    // 체크가 된 상태에서 체크를 해제하고 수정하면 com_flg가 null값이 되는데
+            if(is_null($arr_post['com_flg']))       // com_flg는 데이터베이스 제약조건이 NOT NULL이기 때문에 null이되면 update 실패하고 rollback됨 
+                                                    // null인 경우 com_flg에 미완료상태인 0을 넣어준다. 
             {
                 $arr_post['com_flg'] = "0";
             }
@@ -42,18 +40,7 @@
                         ,"ex_min" => $arr_post["ex_min"]
                         ,"com_flg" => $arr_post["com_flg"]
                         ,"list_no" => $arr_post["list_no"]
-                    );
-                    // if (isset($arr_post['submit'])) {
-                    //     // 체크박스가 체크된 상태인 경우
-                    //     if (isset($arr_post['com_flg'])) {
-                    //         // 체크박스의 'checked' 속성을 제거
-                    //         echo "체크박스가 체크된 상태입니다.";
-                    //     }
-                    //     // 체크박스가 체크되지 않은 상태인 경우
-                    //     else {
-                    //         echo "체크박스가 체크되지 않은 상태입니다.";
-                    //     }
-            
+                    );            
             $result_update = update_list( $arr_info );      // UPDATE
             // var_dump($arr_post);
             header( "Location: list.php");                 // list.php로 redirect
@@ -76,7 +63,7 @@
     </head>
     <body>
         <?php include_once(URL_HEADER) ?>
-        <main>
+        <div class="container" >
             <form method="post" action="modify01.php">
                 <input type="hidden" name="list_no" value="<?php echo $result_info['list_no'] ?>" >
                 <div class="form_box1">
@@ -102,23 +89,24 @@
                     <input class="time" type="text" name="ex_min" maxlength="2" id="ex_min" value="<?php echo $result_info['ex_min'] ?>" >
                     <label  for="ex_min">분</label>
             
-                    <span>완료 여부</span>
-                    <input type="checkbox" name="com_flg" value="1"
+                    <span class="com_flg_tit box2_tit">완료 여부</span>
+                    <input class="ch_box"type="checkbox" name="com_flg" value="1"
                     <?php
-                    if( $result_info['com_flg'] === "1" )
+                    if( $result_info['com_flg'] === "1" )   // com_flg가 "1"일 때 checkbox checked
                     {
                         echo "checked";
                     }
                     ?>
                     >     
-                     <!-- 체크시 com_flg 값 1로 변경되고 com_flg가 1일시에 checked 상태 유지 -->
                     <label for="com_flg">완료</label>
-
-                    <button type = submit name="submit" >SAVE</button>
-                    <button type = button><a href="delete01.php?list_no=<?php echo $result_info['list_no']?>"></a>DELETE</button>
-                    <button type = button><a href="list.php" >CANCEL</a></button>
-            </div>
+                </div>
+                <div class="btn_group">
+                    <button type ="submit">SAVE</button>
+                    <a class="link_btn" href="delete01.php?list_no=<?php echo $result_info['list_no']?>">DELETE</a>
+                    <a class="link_btn" href="list.php" >CANCEL</a>
+                    
+                </div>
         </form>
-    </main>
+    </div>
 </body>
 </html>
