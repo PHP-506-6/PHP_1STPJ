@@ -4,5 +4,5 @@
     $str_readonly = $flg_modify02 ? "" : "readonly";
 ?>
 <div class="goal_text">
-        <textarea name="obj_contents" maxlength="37" class="goal" <?php echo $str_readonly ?>><?php echo $result_obj["obj_contents"] ?></textarea>
+        <input name="obj_contents" maxlength="19" class="goal" <?php echo $str_readonly ?> value="<?php echo $result_obj["obj_contents"] ?>" ></input>
 </div>

@@ -23,6 +23,7 @@
     <?php include_once( URL_HEADER ) ?>
     <form method="post" action="modify02.php">
         <div class="set_obj">
+            <!-- HEADER.PHP 안에 URL_OBJ include 존재하기때문에 사용 가능 -->
             <?php include_once( URL_OBJ ); ?>
             <div class="btn_area">
                 <button class="save_btn btnBlueGreen btnFloat" type="submit">SAVE</button>
@@ -36,10 +37,12 @@
     // Request Method 획득
     $http_method = $_SERVER["REQUEST_METHOD"];
 
+    // POST 방식일 경우
     if( $http_method === "POST")
     {
         $arr_post = $_POST;
         modify02_excute01($arr_post);
+        // 수정 후 list 페이지로
         header( "Location: list.php" );
         exit();
     }
