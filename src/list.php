@@ -1,10 +1,10 @@
 <?php
     define("DOC_ROOT",$_SERVER["DOCUMENT_ROOT"]."/");//root 설정
     define("URL_DB",DOC_ROOT."first_pj/src/common/db_common.php");// db연결
-    define("URL_DB_LIST01",DOC_ROOT."first_pj/src/db_query/db_list01.php"); // function 연결
+    define("URL_DB_COMMON_QUERY",DOC_ROOT."first_pj/src/db_query/db_common_query.php"); // function 연결
     define("URL_HEADER",DOC_ROOT."first_pj/src/header.php"); //header 연결
     include_once(URL_DB);
-    include_once(URL_DB_LIST01);
+    include_once(URL_DB_COMMON_QUERY);
     // ------------------ 페이징--------------------- 
     $arr_get = $_GET;
     //최초 페이지 열때 페이지 넘버
@@ -49,6 +49,9 @@
 
     $arr_list = list01_print01($arr); //전체 데이터 출력
     
+    $arr_cnt = select_flg_count();
+    $com_cnt = (int)$arr_cnt[0]["cnt"];
+    $total_com_cnt = (int)$list_cnt [0]["cnt"];
     //리스트페이지 열 때 이전날짜 데이터 자동 삭제
     $arr_auto_del = array("write_date"=>$write_date);
     delete_auto_data($arr_auto_del);
@@ -69,6 +72,9 @@
 <body>
     <?php include_once(URL_HEADER)?>
     <div class="container">
+        <div class="com-flg">
+            <?php echo $com_cnt ?> / <?php echo $total_com_cnt ?>
+        </div>
         <div class="paging">
              <!-- 이전 -->
              <?php if($page_num <=1){ ?>
