@@ -49,6 +49,9 @@
 
     $arr_list = list01_print01($arr); //전체 데이터 출력
     
+    $arr_cnt = select_flg_count();
+    $com_cnt = (int)$arr_cnt[0]["cnt"];
+    $total_com_cnt = (int)$list_cnt [0]["cnt"];
     //리스트페이지 열 때 이전날짜 데이터 자동 삭제
     $arr_auto_del = array("write_date"=>$write_date);
     delete_auto_data($arr_auto_del);
@@ -69,6 +72,9 @@
 <body>
     <?php include_once(URL_HEADER)?>
     <div class="container">
+        <div class="com-flg">
+            <?php echo $com_cnt ?> / <?php echo $total_com_cnt ?>
+        </div>
         <div class="paging">
              <!-- 이전 -->
              <?php if($page_num <=1){ ?>

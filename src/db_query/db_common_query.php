@@ -93,6 +93,34 @@ function delete_auto_data(&$param_arr){
     }
     return $result_cnt;
 }
+//----------------------------------
+// 함수명   : select_flg_count
+// 기능     : 완료한 데이터행 갯수 체크
+// 파라미터 : X
+// 리턴값   : INT $result
+// 이력		: 0420 오재훈
+//----------------------------------
+function select_flg_count(){
+    $sql = " SELECT count(com_flg) cnt
+             FROM do_list 
+             WHERE com_flg = '1' ";
+
+    $arr_prepare = array();
+    
+    try{
+        db_conn($conn);
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_prepare);
+        $result = $stmt->fetchAll();
+    }catch(Exception $e){
+        return false;
+    }finally{
+        $conn = null;
+    }  
+
+    return $result;
+}
+
 
 
 // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
