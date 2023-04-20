@@ -1,0 +1,11 @@
+/* input box */
+input.complete {
+    font-size: 14px;
+    text-indent: 5px;
+}
+/* 경고문 */
+p.alert {
+    text-align: center;
+    margin-top: 20px;
+}
+/* 버튼 */

@@ -20,10 +20,10 @@ function modify02_print01()
 
     $conn = null;
     try {
-        db_conn( $conn );
-        $stmt = $conn->prepare( $sql );
-        $stmt->execute( $arr_prepare );
-        $result = $stmt->fetchAll();
+        db_conn( $conn ); // PDO object set
+        $stmt = $conn->prepare( $sql ); // statement 셋팅
+        $stmt->execute( $arr_prepare ); // DB request
+        $result = $stmt->fetchAll(); // query 실행 후 $result에 담기
     } 
     catch ( Exception $e ) {
         return $e->getMessage();
@@ -38,8 +38,8 @@ function modify02_print01()
 // ------------------------------------------------
 // 함수명	: modify02_excute01
 // 기능		: 목표 정보 수정 (update)
-// 파라미터	: Array              &$param_arr
-// 리턴값	: INT/STRING		$result_cnt/ERRMSG
+// 파라미터	: Array     &$param_arr
+// 리턴값	: Array		$result
 // -------------------------------------------------
 function modify02_excute01( &$param_arr )
 {
