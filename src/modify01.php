@@ -103,7 +103,7 @@
                         >
 
                     </div>
-                    <div class="btn_group btn_mt40">
+                    <div class="btn_group btn_tl70">
                         <button class="btn" type ="submit">SAVE</button>
                         <a class="btn" href="delete01.php?list_no=<?php echo $result_info['list_no']?>">DELETE</a>
                         <a class="btn" href="list.php" >CANCEL</a>

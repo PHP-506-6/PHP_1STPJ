@@ -128,7 +128,7 @@ function select_flg_count(){
 // 함수명   : insert_list_info
 // 기능     : 새로운 리스트 생성
 // 파라미터 : ARRAY &$param_array
-// 리턴값   : INT $result_cnt / STRING ERRMSG
+// 리턴값   : INT $result_cnt
 // 이력		: 0418  김미현
 // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 function insert_list_info( &$param_array )
@@ -189,7 +189,7 @@ function insert_list_info( &$param_array )
 // 함수명   : update_list
 // 기능     : 특정 리스트 수정
 // 파라미터 : Array &$param_arr
-// 리턴값   : INT/STRING   $result_cnt/ERRMSG 
+// 리턴값   : INT   $result_cnt
 // 이력	    : 0419  김미현
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 function update_list( &$param_arr )
@@ -282,7 +282,7 @@ function select_list_info_no( &$param_no )
 // 함수명	: delete01_print01
 // 기능		: 특정 리스트 정보 출력 (select)
 // 파라미터	: INT &$param_no
-// 리턴값	: Array  $result
+// 리턴값	: Array  $result[0]
 // 이력	    : 0418  권봉정
 // -------------------------------------------------
 function delete01_print01( &$param_no )
@@ -326,9 +326,6 @@ function delete01_print01( &$param_no )
     return $result[0];
 }
 
-// test
-// $test = 3;
-// print_r( delete01_print01( $test) );
 
 // ------------------------------------------------
 // 함수명	: delete01_execute01
@@ -372,11 +369,12 @@ function delete01_execute01( $param_no )
     }
     return $result_cnt;
 }
+
 // ------------------------------------------------
 // 함수명	: modify02_print01
 // 기능		: 목표 정보 출력 (select)
 // 파라미터	: 없음
-// 리턴값	: Array     $result
+// 리턴값	: Array     $result[0]
 // 이력	    : 0419  권봉정
 // -------------------------------------------------
 function modify02_print01()
@@ -450,7 +448,7 @@ function modify02_excute01( &$param_arr )
 // 함수명	: select_first_date
 // 기능		: 제일 처음 데이터 가져오기 
 // 파라미터	: X
-// 리턴값	: Array		$result
+// 리턴값	: Array		$result[0]
 // 이력	    : 0421 김미현
 // -------------------------------------------------
 function select_first_date()

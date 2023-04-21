@@ -56,7 +56,7 @@
                     <input type="number" name="ex_min" maxlength="2" id="ex_min" min="0" max="59">
                     <label  for="ex_min">분</label>
                 </div>
-                <div class="btn_group btn_mt40">
+                <div class="btn_group btn_tl80">
                     <button class="btn" type="submit">SAVE</button>
                     <a class="btn" href="list.php">CANCEL</a>
                 </div>

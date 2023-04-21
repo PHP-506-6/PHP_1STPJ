@@ -308,3 +308,12 @@ input.goal {
 .btn_mt100 {
     margin-top: 100px;
 }
+
+
+.btn_tl70 {
+    transform: translateY(70px);
+}
+
+.btn_tl80 {
+    transform: translateY(80px);
+}
