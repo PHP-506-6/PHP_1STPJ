@@ -29,41 +29,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Awake</title>
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/insert01.css">
+    <link rel="stylesheet" href="css/common.css">
 </head>
 <body>
-    <?php include_once(URL_HEADER) ?>
-    <div class="container_m">
-        <form method="post" action="insert01.php" class="frm_i">
-            <div class="form_box1_m">
-                <label for="list_title">제목</label>
-                <input type="text" name="list_title" id="list_title" required maxlength="50">
+    <div id="wrap">
+        <?php include_once(URL_HEADER) ?>
+        <div class="container container_m_i_d">
+            <form method="post" action="insert01.php" class="frm_i">
+                <div class="form_box1">
+                    <label for="list_title">제목</label>
+                    <input type="text" name="list_title" id="list_title" required maxlength="50">
 
-                <label for="list_contents">내용</label>
-                <input type="text" name="list_contents" id="list_contents" required maxlength="50">
+                    <label for="list_contents">내용</label>
+                    <input type="text" name="list_contents" id="list_contents" required maxlength="50">
 
-            </div>
-            <div class="form_box2_i ">
-                
-                    <label class="box2_tit_i" for="ex_set">세트</label>
-                    <input type="number" name="ex_set" maxlength="2" id="ex_set" >
-                    <span class="set_box_m">SET</span>
-                
-                    <label class="box2_tit_i" for="ex_num">횟수</label>
-                    <input type="number" name="ex_num" maxlength="3" id="ex_num" >
-                    <span class="num_box_i" >회</span>
-                
-                    <span  class="box2_tit_i">시간</span>
-                    <input  type="number" name="ex_hour" maxlength="1" id="ex_hour" >
-                    <label for="ex_hour">시간</label>
-                    <input type="number" name="ex_min" maxlength="2" max="60" id="ex_min" >
-                    <label  for="ex_min">분</label>
-            </div>
-            <div class="btn_group_i">
-                <button class="btn_i" type="submit">SAVE</button>
-                <a class="link_btn_i" href="list.php">CANCEL</a>
-            </div>
-        </form>
+                </div>
+                <div class="form_box2 form_box2_i">
+                    
+                        <label class="box2_tit" for="ex_set">세트</label>
+                        <input type="number" name="ex_set" maxlength="2" id="ex_set" min="0" max="50">
+                        <span class="set_box">SET</span>
+                    
+                        <label class="box2_tit" for="ex_num">횟수</label>
+                        <input type="number" name="ex_num" maxlength="3" id="ex_num" min="0" max="1000">
+                        <span class="num_box" >회</span>
+                    
+                        <span  class="box2_tit">시간</span>
+                        <input  type="number" name="ex_hour" maxlength="1" id="ex_hour" min="0">
+                        <label for="ex_hour">시간</label>
+                        <input type="number" name="ex_min" maxlength="2" max="60" id="ex_min" min="0">
+                        <label  for="ex_min">분</label>
+                </div>
+                <div class="btn_group btn_mt40">
+                    <button class="btn" type="submit">SAVE</button>
+                    <a class="btn" href="list.php">CANCEL</a>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>

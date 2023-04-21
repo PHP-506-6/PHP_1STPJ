@@ -18,6 +18,5 @@ include_once( URL_DB_MODYFY02 );
             include_once( URL_OBJ );
         }
         ?>
-</div>
 </header>
 
