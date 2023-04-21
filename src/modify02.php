@@ -24,10 +24,10 @@
     <div id="wrap">
         <?php include_once( URL_HEADER ) ?>
         <div class="set_obj_box">
-            <form method="post" action="modify02.php">
+            <form method="post" action="modify02.php" class="mt150">
                 <!-- HEADER.PHP 안에 URL_OBJ include 존재하기때문에 사용 가능 -->
                 <?php include_once( URL_OBJ ); ?>
-                <div class="btn_group btn_mt100">
+                <div class="btn_group btn_tl300 ">
                     <button class="btn" type="submit">SAVE</button>
                     <a class="btn" href="list.php">CANCEL</a>
                 </div>

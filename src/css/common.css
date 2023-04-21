@@ -81,6 +81,9 @@ input.goal {
     height: 565px;
     width: 100%;
 }
+form.mt150 {
+    margin-top: 150px;
+}
 
 /* 리스트 페이지 */
 /* 리스트 - 페이지네이션 */
@@ -175,12 +178,6 @@ input.goal {
     list-style: circle;
 }
 
-/* .frm_i
-{
-    width:100%;
-    position : relative;
-} */
-
 /* 수정, 추가, 삭제 - 제목,내용 */
 .form_box1 {
     margin-top: 20px;
@@ -270,11 +267,16 @@ input.goal {
     cursor: pointer;
 }
 
+/* 삭제페이지 */
+p.alert {
+    margin-top: 10px;
+    text-align: center;
+}
+
 /* 버튼 공통 */
 .btn_group {
     display: flex;
     justify-content: space-around;
-    /* width: 330px; */
 }
 
 .btn {
@@ -291,6 +293,7 @@ input.goal {
     display: inline-block;
     font-size: 16px;
     width: 100px;
+    cursor: pointer;
 }
 .btn:hover {
     margin-top: -2px;
@@ -300,20 +303,17 @@ input.goal {
     -webkit-transform: scale(1.1, 1.1);
     box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
 }
-
-.btn_mt40 {
-    margin-top: 40px;
+.btn_tl15 {
+    transform: translateY(15px);
 }
-
-.btn_mt100 {
-    margin-top: 100px;
-}
-
-
 .btn_tl70 {
     transform: translateY(70px);
 }
 
 .btn_tl80 {
     transform: translateY(80px);
+}
+
+.btn_tl300 {
+    transform: translateY(300px);
 }

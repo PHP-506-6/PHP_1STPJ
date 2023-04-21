@@ -93,7 +93,7 @@
                         " readonly> 
                     </div>
                     <p class="alert">정보를 모두 삭제합니다.<br>동의 하시면 확인을 눌러 주세요.</p>
-                    <div class="btn_group">
+                    <div class="btn_group btn_tl15">
                         <button type ="submit" class="btn">확인</button>
                         <a class="btn" href="list.php">취소</a>                   
                     </div>
