@@ -6,6 +6,7 @@
     include_once(URL_DB);
     include_once(URL_DB_COMMON_QUERY);
     // ------------------ 페이징--------------------- 
+    $write_date = date('Ymd').'000000'; // YYYYmmdd000000  ex)2023년04월21일 00시00분00초
     $arr_get = $_GET;
     //최초 페이지 열때 페이지 넘버
     if(array_key_exists("page_num",$arr_get)){
@@ -16,7 +17,8 @@
     //한 페이지당 n개행만 보여줌
     $limit_num = 6; 
     //행 갯수 카운트
-    $list_cnt = select_list_count();
+    $sel_data_cnt = array("write_date" => $write_date);
+    $list_cnt = select_list_count($sel_data_cnt);
     // 반올림,int로 형변환
     $max_page_num = ceil((int)$list_cnt[0]["cnt"] / $limit_num);
     // 전체 페이지 수
@@ -35,12 +37,12 @@
     }
     //마지막 페이지
     $e_page_num = $now_page * $page_block;
-
+    //마지막 페이지 num가 총 페이지 num보다 크면 실행
     if($e_page_num > $total_page){ 
         $e_page_num = $total_page;
     }
     // ------------------ end 페이징--------------------- 
-    $write_date = date('Ymd').'000000'; //= YYYYmmdd000000 형식
+    
 
     $arr = array("limit_num" => $limit_num
                     ,"offset" => $offset
@@ -49,12 +51,14 @@
 
     $arr_list = list01_print01($arr); //전체 데이터 출력
     
-    $arr_cnt = select_flg_count();
-    $com_cnt = (int)$arr_cnt[0]["cnt"];
-    $total_com_cnt = (int)$list_cnt [0]["cnt"];
+    $arr_cnt = select_flg_count(); //완료된 데이터 갯수
+    $com_cnt = (int)$arr_cnt[0]["cnt"]; //int타입으로 바꿈
+    $total_com_cnt = (int)$list_cnt [0]["cnt"]; //int타입으로 바꿈
+
     //리스트페이지 열 때 이전날짜 데이터 자동 삭제
     $arr_auto_del = array("write_date"=>$write_date);
     delete_auto_data($arr_auto_del);
+
     
 ?>
 <!DOCTYPE html>
@@ -109,11 +113,37 @@
                         <div class="box-content">
                             <ul>
                                 <li><?php echo $val["list_contents"]?></li>
-                                <?php if($val["ex_num"] != null || $val["ex_set"] != null) {?>
-                                    <li><?php echo $val["ex_num"]."*".$val["ex_set"]?> SET</li>
+                                <!-- 횟수,세트 출력 조건 -->
+                                <?php if($val["ex_num"] !== null && empty($val["ex_num"]) !== true){ ?>
+                                    <li>
+                                        <?php echo $val["ex_num"]."회"?>
+                                        <?php if($val["ex_set"] !== null && empty($val["ex_set"]) !== true) { ?>
+                                            <?php echo " X ".$val["ex_set"]."SET"?>
+                                        <?php }?>
+                                    </li>
+                                <?php }elseif($val["ex_set"] !== null && empty($val["ex_set"]) !== true){ ?>
+                                    <li>
+                                        <?php if($val["ex_num"] != null && empty($val["ex_num"]) !== true) { ?>
+                                            <?php echo $val["ex_num"]."회 X "?>
+                                        <?php }?>
+                                            <?php echo $val["ex_set"]."SET"?>
+                                    </li>
                                 <?php } ?>
-                                <?php if($val["ex_hour"] != null || $val["ex_min"] != null) {?>
-                                    <li><?php echo $val["ex_hour"]?>시간 <?php echo $val["ex_min"]?>분</li>
+                                <!-- 시간, 분 출력 조건 -->
+                                <?php if($val["ex_hour"] !== null && empty($val["ex_hour"]) !== true){ ?>
+                                    <li>
+                                        <?php echo $val["ex_hour"]."시간"?>
+                                        <?php if($val["ex_min"] !== null && empty($val["ex_min"]) !== true) { ?>
+                                            <?php echo $val["ex_min"]."분"?>
+                                        <?php }?>
+                                    </li>
+                                <?php }elseif($val["ex_min"] !== null && empty($val["ex_min"]) !== true){ ?>
+                                    <li>
+                                        <?php if($val["ex_hour"] != null && empty($val["ex_hour"]) !== true) { ?>
+                                            <?php echo $val["ex_hour"]."시간"?>
+                                        <?php }?>
+                                            <?php echo $val["ex_min"]."분"?>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </div>

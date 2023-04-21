@@ -1,7 +1,6 @@
 <?php
-define("URL_DB_MODYFY02", DOC_ROOT."first_pj/src/db_query/db_modify02.php"); // function 연결
 define("URL_OBJ",DOC_ROOT."first_pj/src/set_obj.php"); // 목표 설정 연결
-include_once( URL_DB_MODYFY02 );
+include_once( URL_DB_COMMON_QUERY );
 
 ?>
 

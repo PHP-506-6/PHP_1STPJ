@@ -1,5 +1,4 @@
 <?php
-// include_once("../common/db_common.php");         // 디버그용 
 //----------------------------------
 // 함수명   : list01_print01
 // 기능     : 모든 리스트 출력
@@ -33,20 +32,19 @@ function list01_print01(&$param_arr){
     }                
     return $result;
 }
-
 //----------------------------------
 // 함수명   : select_list_count
 // 기능     : 게시판 정보글 행 갯수 카운트
-// 파라미터 : X
+// 파라미터 : Array $param_arr
 // 리턴값   : INT $result
 // 이력		: 0418 오재훈
 //----------------------------------
-function select_list_count(){
-    $sql = " SELECT count(*) cnt, write_date
+function select_list_count(&$param_arr){
+    $sql = " SELECT count(*) cnt
              FROM do_list 
-             WHERE write_date >= date(now()) ";
+             WHERE write_date >= :write_date ";
 
-    $arr_prepare = array();
+    $arr_prepare = array("write_date"=>$param_arr["write_date"]);
     
     try{
         db_conn($conn);
@@ -54,7 +52,7 @@ function select_list_count(){
         $stmt->execute($arr_prepare);
         $result = $stmt->fetchAll();
     }catch(Exception $e){
-        return false;
+        return $e->getMessage();
     }finally{
         $conn = null;
     }  
@@ -240,8 +238,6 @@ function update_list( &$param_arr )
     return $result_cnt;     //행의 개수 리턴 
 }
 
-
-
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 // 함수     : select_list_info_no
 // 기능     : 특정 리스트 정보 출력
@@ -279,11 +275,172 @@ function select_list_info_no( &$param_no )
     }
     return $result[0];
 }
+// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+// ------------------------------------------------
+// 함수명	: delete01_print01
+// 기능		: 특정 리스트 정보 출력 (select)
+// 파라미터	: INT &$param_no
+// 리턴값	: Array  $result
+// 이력	    : 0418  권봉정
+// -------------------------------------------------
+function delete01_print01( &$param_no )
+{
+    $sql =
+        " SELECT "
+        ." list_title "
+        ." ,list_contents "
+        ." ,ex_set "
+        ." ,ex_num "
+        ." ,ex_hour "
+        ." ,ex_min "
+        ." ,com_flg "
+        ." ,list_no "
+        ." FROM "
+        ." do_list "
+        ." WHERE "
+        ." list_no = :list_no "
+        ;
+    $arr_prepare = 
+        array(
+            ":list_no" => $param_no
+        );
 
+    $conn = null;
+    try
+    {
+        db_conn( $conn );
+        $stmt = $conn->prepare( $sql );
+        $stmt->execute( $arr_prepare );
+        $result = $stmt->fetchALL();
+    }
+    catch ( Exception $e )
+    {
+        return $e->getMessage();
+    }
+    finally
+    {
+        $conn = null;
+    }
+    return $result[0];
+}
 
+// test
+// $test = 3;
+// print_r( delete01_print01( $test) );
 
+// ------------------------------------------------
+// 함수명	: delete01_execute01
+// 기능		: 특정 리스트 정보 삭제 (delete)
+// 파라미터	: INT   &$param_no
+// 리턴값	: iNT   $result_cnt
+// 이력	    : 0419  권봉정
+// -------------------------------------------------
 
+function delete01_execute01( $param_no )
+{
+    $sql =
+    " DELETE FROM do_list "
+    ." WHERE "
+    ." list_no = :list_no "
+    ;
 
+    $arr_prepare =
+        array(
+            ":list_no" => $param_no["list_no"]
+        );
+    
+    $conn = null;
+    try
+    {
+        db_conn( $conn );
+        $conn->beginTransaction(); // Transaction 시작
+        $stmt = $conn->prepare( $sql );
+        $stmt->execute( $arr_prepare );
+        $result_cnt = $stmt->rowCount();
+        $conn->commit();
+    }
+    catch ( Exception $e )
+    {
+        $conn->rollback();
+        return $e->getMessage();
+    }
+    finally
+    {
+        $conn = null;
+    }
+    return $result_cnt;
+}
+// ------------------------------------------------
+// 함수명	: modify02_print01
+// 기능		: 목표 정보 출력 (select)
+// 파라미터	: 없음
+// 리턴값	: Array     $result
+// 이력	    : 0419  권봉정
+// -------------------------------------------------
+function modify02_print01()
+{
+    $sql =
+    " SELECT "
+    ." obj_contents "
+    ." FROM "
+    ." obj_list "
+    ;
+    $arr_prepare = array();
 
+    $conn = null;
+    try {
+        db_conn( $conn ); // PDO object set
+        $stmt = $conn->prepare( $sql ); // statement 셋팅
+        $stmt->execute( $arr_prepare ); // DB request
+        $result = $stmt->fetchAll(); // query 실행 후 $result에 담기
+    } 
+    catch ( Exception $e ) {
+        return $e->getMessage();
+    } 
+    finally {
+        $conn = null;
+    }
 
+    return $result[0];
+}
+
+// ------------------------------------------------
+// 함수명	: modify02_excute01
+// 기능		: 목표 정보 수정 (update)
+// 파라미터	: Array     &$param_arr
+// 리턴값	: Array		$result
+// 이력	    : 0419  권봉정
+// -------------------------------------------------
+function modify02_excute01( &$param_arr )
+{
+    $sql =
+        " UPDATE "
+        ." obj_list "
+        ." SET "
+        ." obj_contents = :obj_contents "
+        ;
+    $arr_prepare =
+        array(
+            ":obj_contents" => $param_arr["obj_contents"]
+        );
+
+    $conn = null;
+    try {
+        db_conn( $conn );
+        $conn->beginTransaction(); // Transaction 시작
+        $stmt = $conn->prepare( $sql );
+        $result = $stmt->execute( $arr_prepare );
+        $conn->commit();
+    }
+    catch ( Exception $e )
+    {
+        $conn->rollback();
+        return $e->getMessage();
+    }
+    finally{
+        $conn = null;
+    }
+
+    return $result;
+}
 ?>
