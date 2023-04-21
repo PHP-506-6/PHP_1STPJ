@@ -73,6 +73,15 @@ input.goal {
     text-align: center;
 }
 
+/* 목표 설정 페이지 */
+.set_obj_box {
+    position: absolute;
+    top: 279px;
+    background: #131313;
+    height: 565px;
+    width: 100%;
+}
+
 /* 리스트 페이지 */
 /* 리스트 - 페이지네이션 */
 .paging {
@@ -294,4 +303,8 @@ input.goal {
 
 .btn_mt40 {
     margin-top: 40px;
+}
+
+.btn_mt100 {
+    margin-top: 100px;
 }

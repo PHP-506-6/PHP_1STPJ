@@ -1,7 +1,5 @@
 <?php
 define("URL_OBJ",DOC_ROOT."first_pj/src/set_obj.php"); // 목표 설정 연결
-include_once( URL_DB_COMMON_QUERY );
-
 ?>
 
 <header>
