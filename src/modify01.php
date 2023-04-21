@@ -12,13 +12,13 @@
     // GET 체크
 
     if( $http_method === "GET" )                        // GET일 때 
-    {                                   
+    {                    
         if( array_key_exists("list_no",$_GET) )         // $_GET의 키에 list_no가 존재할 때 
         {
             $list_no = $_GET["list_no"];                // $list_no를 $_GET["list_no"]  지정
-        }else
-        {
-            $list_no = 1;                               // 존재하지 않으면 list_no를 1로 지정
+        }else{
+            $first_date = select_first_date();
+            $list_no = $first_date["list_no"];
         }
             $result_info = select_list_info_no( $list_no );     // $_GET["list_no"]에 해당하는 정보를 가져옴
     }
@@ -67,8 +67,7 @@
             <div class="container container_m_i_d" >
                 <form method="post" action="modify01.php">
                     <input type="hidden" name="list_no" value="<?php echo $result_info['list_no'] ?>" >     
-                    <!-- 클릭한 리스트를 가져와야 하기 때문에 화면에 출력이 되지 않지만 
-                        리스트의 PK값을 가져와서 데이터를 출력 list_no가 없으면 어떤 데이터를 가져와야 하는지 모름-->
+                    <!-- 리스트의 PK값을 가져와서 데이터를 출력하기 때문에 hidden list_no를 가져옴 -->
                     <div class="form_box1">
                         <label for="list_title">제목</label>
                         <input type="text" name="list_title" id="list_title" required maxlength="50" value="<?php echo $result_info['list_title'] ?>" >
@@ -77,22 +76,23 @@
                         <input type="text" name="list_contents" id="list_contents" required maxlength="50" value="<?php echo $result_info['list_contents'] ?>" >
                     </div>
                     <div class="form_box2 form_box2_m_d">
-                        <label class="box2_tit_m" for="ex_set">세트</label>
-                        <input type="number" name="ex_set" maxlength="2" id="ex_set" min="0" value="<?php echo $result_info['ex_set'] ?>" >
-                        <span class="set_box_m">SET</span>
+                        <label class="box2_tit box2_tit_m_d" for="ex_set">세트</label>
+                        <input type="number" name="ex_set" maxlength="2" id="ex_set" min="0" max="50" value="<?php echo $result_info['ex_set'] ?>" >
+                        <span class="set_box">SET</span>
                         
-                        <label class="box2_tit_m" for="ex_num">횟수</label>
-                        <input type="number" name="ex_num" maxlength="3" min="0" id="ex_num" value="<?php echo $result_info['ex_num'] ?>" >
-                        <span class="num_box_m" >회</span>
+                        <label class="box2_tit box2_tit_m_d " for="ex_num">횟수</label>
+                        <input type="number" name="ex_num" maxlength="4" min="0" max="1000" id="ex_num" value="<?php echo $result_info['ex_num'] ?>" >
+                        <span class="num_box" >회</span>
                         
-                        <span  class="box2_tit_m">시간</span>
-                        <input  type="number" name="ex_hour" maxlength="1" min="0" id="ex_hour" value="<?php echo $result_info['ex_hour'] ?>" >
+                        <span  class="box2_tit box2_tit_m_d">시간</span>
+                        <input  type="number" name="ex_hour" maxlength="1" min="0" max="9" id="ex_hour" value="<?php echo $result_info['ex_hour'] ?>" >
                         <label for="ex_hour">시간</label>
                         
-                        <input  type="number" name="ex_min" maxlength="2" max="60" min="0" id="ex_min" value="<?php echo $result_info['ex_min'] ?>" >
+
+                        <input  type="number" name="ex_min" maxlength="2" min="0" max="59" id="ex_min" value="<?php echo $result_info['ex_min'] ?>" >
                         <label  for="ex_min">분</label>
                 
-                        <label for="com_flg" class="box2_tit_m" >완료 여부</label>
+                        <label for="com_flg" class="box2_tit box2_tit_m_d" >완료 여부</label>
                         <input class="ch_box_m"type="checkbox" name="com_flg" value="1"
                         <?php
                         if( $result_info['com_flg'] === "1" )   // com_flg가 "1"일 때 속성에  checked 추가
@@ -103,10 +103,10 @@
                         >
 
                     </div>
-                    <div class="btn_group_m">
-                        <button class="btn_m" type ="submit">SAVE</button>
-                        <a class="link_btn_m" href="delete01.php?list_no=<?php echo $result_info['list_no']?>">DELETE</a>
-                        <a class="link_btn_m" href="list.php" >CANCEL</a>
+                    <div class="btn_group btn_mt40">
+                        <button class="btn" type ="submit">SAVE</button>
+                        <a class="btn" href="delete01.php?list_no=<?php echo $result_info['list_no']?>">DELETE</a>
+                        <a class="btn" href="list.php" >CANCEL</a>
                         
                     </div>
             </form>

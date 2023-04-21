@@ -1,4 +1,6 @@
 <?php
+
+
 //----------------------------------
 // 함수명   : list01_print01
 // 기능     : 모든 리스트 출력
@@ -443,4 +445,38 @@ function modify02_excute01( &$param_arr )
 
     return $result;
 }
+
+// ------------------------------------------------
+// 함수명	: select_first_date
+// 기능		: 제일 처음 데이터 가져오기 
+// 파라미터	: X
+// 리턴값	: Array		$result
+// 이력	    : 0421 김미현
+// -------------------------------------------------
+function select_first_date()
+{
+    $sql=" SELECT list_no
+            FROM do_list
+            LIMIT 1
+            ";
+
+    $arr_prepare = array();
+
+    $conn = null;
+
+    try{
+        db_conn($conn);
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($arr_prepare);
+        $result = $stmt->fetchAll();
+    }catch(Exception $e){
+        return $e->getMessage();
+    }finally{
+        $conn = null;
+    }                
+    return $result[0];
+}
+
+
+
 ?>
