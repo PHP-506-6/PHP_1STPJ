@@ -92,9 +92,8 @@ form.mt150 {
     text-align: center;
 }
 .com-flg {
-    position: absolute;
-    top: 10px;
-    left: 15px;
+    margin: 0 auto;
+    margin-top: 10px;
 }
 .btn-prev span {
     font-size: 16px;
@@ -110,7 +109,21 @@ form.mt150 {
 .active {
     text-decoration: line-through;
 }
+#progress {
+    appearance: none;
+}
+#progress::-webkit-progress-bar {
+    background:#f0f0f0;
+    border-radius:10px;
+    box-shadow: inset 3px 3px 10px #ccc;
+}
+#progress::-webkit-progress-value {
+    border-radius:10px;
+    background: #1D976C;
+    background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);
+    background: linear-gradient(to right, #93F9B9, #1D976C);
 
+}
 /* container 공통부분 */
 .container {
     position: absolute;
@@ -124,6 +137,7 @@ form.mt150 {
     background-color: #fff;
     border-radius: 25px 25px 0 0;
 }
+
 
 /* 수정,추가,삭제 컨테이너 */
 .container_m_i_d {
@@ -141,42 +155,61 @@ form.mt150 {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
+.container_l .inner .box-click{
+    height: 100px;
+}
+.container_l .inner .box-click:hover{
+    margin-top: -2px;
+    margin-left: 0px;
+    transform: scale(1.1, 1.1);
+    -ms-transform: scale(1.1, 1.1);
+    -webkit-transform: scale(1.1, 1.1);
+    box-shadow: 0px 5px 5px -2px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s;
+}
 .container_l .inner .box {
-    width: 160px;
-    margin-top: 15px;
+    width: 100%;
+    height: 100px;
+    padding-top: 20px;
+    box-shadow: 0px 3px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: #f8f8f8;
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
     text-align: center;
 }
-
+.container_l .inner .box .sec-box{
+    display: flex;
+}
 .container_l .inner .box .box-title {
-    width: 160px;
-    padding: 5px;
+    width: 115px;
     font-size: 20px;
+    text-align: center;
     font-weight: 600;
     margin-bottom: 10px;
-    border: 2px solid #2e2e2e;
-    border-radius: 10px;
     overflow: hidden;
 }
-
+.container_l .inner .box .box-title .list-cont{
+    font-size: 18px;
+    padding-top: 5px;
+    font-weight: 300;
+    color: #3e3e3e;
+}
 .container_l .inner .box .box-title a:hover {
     text-decoration: underline;
 }
 
 .container_l .inner .box .box-content {
-    height: 90px;
-    padding-top: 5px;
-    padding-left: 30px;
-    text-align: left;
+    width: 115px;
+    text-align: center;
     line-height: 25px;
-    background-color: #f8f8f8;
-    box-shadow: 0px 3px 2px 1px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
-
-.container_l .inner .box .box-content ul {
-    list-style: circle;
+.container_l .inner .box .box-hour{
+    width: 115px;
+    line-height: 25px;
 }
+
 
 /* 수정, 추가, 삭제 - 제목,내용 */
 .form_box1 {

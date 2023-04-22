@@ -15,7 +15,7 @@
         $page_num = 1; //key가 없으면 1로 셋팅
     }
     //한 페이지당 n개행만 보여줌
-    $limit_num = 6; 
+    $limit_num = 1; 
     //행 갯수 카운트
     $sel_data_cnt = array("write_date" => $write_date);
     $list_cnt = select_list_count($sel_data_cnt);
@@ -38,7 +38,7 @@
     //마지막 페이지
     $e_page_num = $now_page * $page_block;
     //마지막 페이지 num가 총 페이지 num보다 크면 실행
-    if($e_page_num > $total_page){ 
+    if($e_page_num >= $total_page){ 
         $e_page_num = $total_page;
     }
     // ------------------ end 페이징--------------------- 
@@ -59,6 +59,7 @@
     $arr_auto_del = array("write_date"=>$write_date);
     delete_auto_data($arr_auto_del);
 
+     
     
 ?>
 <!DOCTYPE html>
@@ -76,9 +77,7 @@
     <div id="wrap">
     <?php include_once(URL_HEADER)?>
     <div class="container container_l">
-        <div class="com-flg">
-            <?php echo $com_cnt ?> / <?php echo $total_com_cnt ?>
-        </div>
+        
         <div class="paging">
              <!-- 이전 -->
              <?php if($page_num <=1){ ?>
@@ -89,7 +88,7 @@
                 </a>
             <?php } ?>
             <!-- //이전 -->
-        <?php for($i=$s_page_num;$i<=$max_page_num; $i++){ ?>
+        <?php for($i=$s_page_num;$i<=$e_page_num; $i++){ ?>
                 <a class="middle-page-num" href="list.php?page_num=<?php echo $i?>"><?php echo $i?></a>
         <?php  }?>
          <!-- 다음 -->
@@ -103,52 +102,64 @@
              <!-- //다음 -->
         </div>
             <div class="inner">
+                <div class="com-flg">
+                    <h2>오늘의 운동 완료량</h2>
+                    <?php echo $com_cnt ?> / <?php echo $total_com_cnt ?>
+                    <progress id="progress" value="<?php echo $com_cnt ?>" min="0" max="<?php echo $total_com_cnt ?>"></progress>
+                </div>
                 <!-- 리스트 출력 -->
                 <?php foreach ($arr_list as $val) { ?>
+                    <a class="box-click" href="modify01.php?list_no=<?php echo $val["list_no"]?>">
                     <div class="box <?php if($val["com_flg"] === '1'){ echo 'active';}?>">
+                    <div class="sec-box">
                         <div class="box-title">
-                            <a href="modify01.php?list_no=<?php echo $val["list_no"]?>" class="a-title"><p><?php echo $val["list_title"]?></p></a>
+                            <p><?php echo $val["list_title"]?></p>
+                            <p class="list-cont"><?php echo $val["list_contents"]?></p>
                         </div>
                         <div class="box-content">
-                            <ul>
-                                <li><?php echo $val["list_contents"]?></li>
-                                <!-- 횟수,세트 출력 조건 -->
-                                <?php if($val["ex_num"] !== null && empty($val["ex_num"]) !== true){ ?>
-                                    <li>
+                            <!-- 횟수,세트 출력 조건 -->
+                            <?php if($val["ex_num"] !== null && empty($val["ex_num"]) !== true){ ?>
+                                <span class="material-symbols-outlined">settings_accessibility</span>
+                                    <div>
                                         <?php echo $val["ex_num"]."회"?>
                                         <?php if($val["ex_set"] !== null && empty($val["ex_set"]) !== true) { ?>
                                             <?php echo " X ".$val["ex_set"]."SET"?>
                                         <?php }?>
-                                    </li>
+                                    </div>
                                 <?php }elseif($val["ex_set"] !== null && empty($val["ex_set"]) !== true){ ?>
-                                    <li>
+                                    <div>
                                         <?php if($val["ex_num"] != null && empty($val["ex_num"]) !== true) { ?>
                                             <?php echo $val["ex_num"]."회 X "?>
                                         <?php }?>
                                             <?php echo $val["ex_set"]."SET"?>
-                                    </li>
+                                    </div>
                                 <?php } ?>
-                                <!-- 시간, 분 출력 조건 -->
-                                <?php if($val["ex_hour"] !== null && empty($val["ex_hour"]) !== true){ ?>
-                                    <li>
+                        </div>
+                        <div class="box-hour">
+                            <!-- 시간, 분 출력 조건 -->
+                            <?php if($val["ex_hour"] !== null && empty($val["ex_hour"]) !== true){ ?>
+                                <span class="material-symbols-outlined">av_timer</span>
+                                <div>
+                                    <?php echo $val["ex_hour"]."시간"?>
+                                    <?php if($val["ex_min"] !== null && empty($val["ex_min"]) !== true) { ?>
+                                        <?php echo $val["ex_min"]."분"?>
+                                    <?php }?>
+                                </div>
+                            <?php }elseif($val["ex_min"] !== null && empty($val["ex_min"]) !== true){ ?>
+                                <div>
+                                    <?php if($val["ex_hour"] != null && empty($val["ex_hour"]) !== true) { ?>
                                         <?php echo $val["ex_hour"]."시간"?>
-                                        <?php if($val["ex_min"] !== null && empty($val["ex_min"]) !== true) { ?>
-                                            <?php echo $val["ex_min"]."분"?>
-                                        <?php }?>
-                                    </li>
-                                <?php }elseif($val["ex_min"] !== null && empty($val["ex_min"]) !== true){ ?>
-                                    <li>
-                                        <?php if($val["ex_hour"] != null && empty($val["ex_hour"]) !== true) { ?>
-                                            <?php echo $val["ex_hour"]."시간"?>
-                                        <?php }?>
-                                            <?php echo $val["ex_min"]."분"?>
-                                    </li>
-                                <?php } ?>
-                            </ul>
+                                    <?php }?>
+                                        <?php echo $val["ex_min"]."분"?>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
+                    
+                    </div>
+                    </a>
                 <?php   } ?>
-                <!--  <!-- //리스트 출력 -->
+                <!--   //리스트 출력 -->
             </div><!-- end inner -->
             <div class="btn_group">
                     <a href="insert01.php" class="btn">INSERT</a>
