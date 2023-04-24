@@ -131,8 +131,20 @@
                         <div class="box <?php if($val["com_flg"] === '1'){ echo 'active';}?>">
                             <div class="sec-box">
                                 <div class="box-title">
-                                    <p><?php echo $val["list_title"]?></p>
-                                    <p class="list-cont"><?php echo $val["list_contents"]?></p>
+                                    <p class="box-title-main">
+                                        <?php if(mb_strlen($val["list_title"]) > 6){ ?>
+                                                <?php echo mb_substr($val["list_title"],0,6).".." ?>
+                                            <?php }else{ ?>
+                                                <?php echo $val["list_title"]?>
+                                            <?php }?>
+                                    </p>
+                                    <p class="box-title-sub list-cont">
+                                        <?php if(mb_strlen($val["list_contents"]) > 10){ ?>
+                                                <?php echo mb_substr($val["list_contents"],0,10).".." ?>
+                                            <?php }else{ ?>
+                                                <?php echo $val["list_contents"]?>
+                                            <?php }?>
+                                        </p>
                                 </div>
                                 <div class="box-content">
                                     <!-- 횟수,세트 출력 조건 -->
