@@ -4,5 +4,5 @@
     $str_readonly = $flg_modify02 ? "" : "readonly";
 ?>
 <div class="goal_text">
-        <input name="obj_contents" maxlength="19" class="goal" <?php echo $str_readonly ?> value="<?php echo $result_obj["obj_contents"] ?>" ></input>
+        <input name="obj_contents" maxlength="19" class="goal" <?php echo $str_readonly ?> value="<?php echo $result_obj["obj_contents"] ?>" autocomplete="off" ></input>
 </div>

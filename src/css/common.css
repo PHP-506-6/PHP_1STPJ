@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "SEBANG_Gothic_Bold";
 }
 a {
     text-decoration: none;
@@ -15,6 +16,13 @@ a {
     margin: 0 auto;
     width: 390px;
     height: 844px;
+}
+@font-face {
+    font-family: "SEBANG_Gothic_Bold";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2104@1.0/SEBANG_Gothic_Bold.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
 }
 
 /* 헤더 */
@@ -50,6 +58,9 @@ p.date > a > i {
 p.date > a > i::after {
     display: block;
     clear: both;
+}
+.bi-pencil-square {
+    color: #ffffff;
 }
 
 /* 헤더 - 목표 */
@@ -113,16 +124,15 @@ form.mt150 {
     appearance: none;
 }
 #progress::-webkit-progress-bar {
-    background:#f0f0f0;
-    border-radius:10px;
+    background: #f0f0f0;
+    border-radius: 10px;
     box-shadow: inset 3px 3px 10px #ccc;
 }
 #progress::-webkit-progress-value {
-    border-radius:10px;
-    background: #1D976C;
-    background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);
-    background: linear-gradient(to right, #93F9B9, #1D976C);
-
+    border-radius: 10px;
+    background: #1d976c;
+    background: -webkit-linear-gradient(to right, #93f9b9, #1d976c);
+    background: linear-gradient(to right, #93f9b9, #1d976c);
 }
 /* container 공통부분 */
 .container {
@@ -137,7 +147,6 @@ form.mt150 {
     background-color: #fff;
     border-radius: 25px 25px 0 0;
 }
-
 
 /* 수정,추가,삭제 컨테이너 */
 .container_m_i_d {
@@ -155,10 +164,10 @@ form.mt150 {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.container_l .inner .box-click{
+.container_l .inner .box-click {
     height: 100px;
 }
-.container_l .inner .box-click:hover{
+.container_l .inner .box-click:hover {
     margin-top: -2px;
     margin-left: 0px;
     transform: scale(1.1, 1.1);
@@ -178,7 +187,7 @@ form.mt150 {
     flex-wrap: wrap;
     text-align: center;
 }
-.container_l .inner .box .sec-box{
+.container_l .inner .box .sec-box {
     display: flex;
 }
 .container_l .inner .box .box-title {
@@ -189,7 +198,7 @@ form.mt150 {
     margin-bottom: 10px;
     overflow: hidden;
 }
-.container_l .inner .box .box-title .list-cont{
+.container_l .inner .box .box-title .list-cont {
     font-size: 18px;
     padding-top: 5px;
     font-weight: 300;
@@ -205,11 +214,10 @@ form.mt150 {
     line-height: 25px;
     overflow: hidden;
 }
-.container_l .inner .box .box-hour{
+.container_l .inner .box .box-hour {
     width: 115px;
     line-height: 25px;
 }
-
 
 /* 수정, 추가, 삭제 - 제목,내용 */
 .form_box1 {

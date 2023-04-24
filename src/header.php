@@ -5,7 +5,7 @@ define("URL_OBJ",DOC_ROOT."first_pj/src/set_obj.php"); // 목표 설정 연결
 <header>
     <h1><a href="list.php"><img src="../src/img/logo.png" /></a></h1>
     <p class="date">TODAY <?php echo date("Y-m-d") ?>
-        <a href="modify02.php"><i class="bi bi-pencil-square" style="color:#fff"></i></a>
+        <a href="modify02.php"><i class="bi bi-pencil-square"></i></a>
     </p>
     <?php
         // basename : 경로 제외한 파일이름만 선택하는 함수
