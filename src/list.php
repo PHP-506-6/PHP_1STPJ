@@ -139,8 +139,8 @@
                                             <?php }?>
                                     </p>
                                     <p class="box-title-sub list-cont">
-                                        <?php if(mb_strlen($val["list_contents"]) > 10){ ?>
-                                                <?php echo mb_substr($val["list_contents"],0,10).".." ?>
+                                        <?php if(mb_strlen($val["list_contents"]) > 9){ ?>
+                                                <?php echo mb_substr($val["list_contents"],0,9).".." ?>
                                             <?php }else{ ?>
                                                 <?php echo $val["list_contents"]?>
                                             <?php }?>
