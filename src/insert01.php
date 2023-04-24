@@ -34,21 +34,21 @@
             <form method="post" action="insert01.php">
                 <div class="form_box1">
                     <label for="list_title">제목</label>
-                    <input type="text" name="list_title" id="list_title" required maxlength="50">
+                    <input type="text" name="list_title" id="list_title" required maxlength="50" autocomplete="off">
                     <label for="list_contents">내용</label>
-                    <input type="text" name="list_contents" id="list_contents" required maxlength="50">
+                    <input type="text" name="list_contents" id="list_contents" required maxlength="50" autocomplete="off">
                 </div>
                 <div class="form_box2 form_box2_i">
                     <label class="box2_tit" for="ex_set">세트</label>
-                    <input type="number" name="ex_set" maxlength="2" id="ex_set" min="0" max="50">
+                    <input type="number" name="ex_set" maxlength="2" id="ex_set" min="0" max="50" autocomplete="off">
                     <span class="set_box">SET</span>
                     <label class="box2_tit" for="ex_num">횟수</label>
-                    <input type="number" name="ex_num" maxlength="4" id="ex_num" min="0" max="1000">
+                    <input type="number" name="ex_num" maxlength="4" id="ex_num" min="0" max="1000" autocomplete="off">
                     <span class="num_box" >회</span>
                     <span  class="box2_tit">시간</span>
-                    <input  type="number" name="ex_hour" maxlength="1" id="ex_hour" min="0" max="9">
+                    <input  type="number" name="ex_hour" maxlength="1" id="ex_hour" min="0" max="9" autocomplete="off">
                     <label for="ex_hour">시간</label>
-                    <input type="number" name="ex_min" maxlength="2" id="ex_min" min="0" max="59">
+                    <input type="number" name="ex_min" maxlength="2" id="ex_min" min="0" max="59" autocomplete="off">
                     <label  for="ex_min">분</label>
                 </div>
                 <div class="btn_group btn_tl80">

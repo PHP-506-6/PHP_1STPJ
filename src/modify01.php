@@ -75,21 +75,21 @@
                     <!-- 리스트의 PK값을 가져와서 데이터를 보내야하기 때문에 hidden으로 list_no를 가져옴 -->
                     <div class="form_box1">
                         <label for="list_title">제목</label>
-                        <input type="text" name="list_title" id="list_title" required maxlength="50" value="<?php echo $result_info['list_title'] ?>" >
+                        <input type="text" name="list_title" id="list_title" required maxlength="50" autocomplete="off" value="<?php echo $result_info['list_title'] ?>" >
                         <label for="list_contents">내용</label>
-                        <input type="text" name="list_contents" id="list_contents" required maxlength="50" value="<?php echo $result_info['list_contents'] ?>" >
+                        <input type="text" name="list_contents" id="list_contents" required maxlength="50" autocomplete="off" value="<?php echo $result_info['list_contents'] ?>" >
                     </div>
                     <div class="form_box2 form_box2_m_d">
                         <label class="box2_tit box2_tit_m_d" for="ex_set">세트</label>
-                        <input type="number" name="ex_set" maxlength="2" id="ex_set" min="0" max="50" value="<?php echo $result_info['ex_set'] ?>" >
+                        <input type="number" name="ex_set" maxlength="2" id="ex_set" min="0" max="50" autocomplete="off" value="<?php echo $result_info['ex_set'] ?>" >
                         <span class="set_box">SET</span>
                         <label class="box2_tit box2_tit_m_d " for="ex_num">횟수</label>
-                        <input type="number" name="ex_num" maxlength="4" min="0" max="1000" id="ex_num" value="<?php echo $result_info['ex_num'] ?>" >
+                        <input type="number" name="ex_num" maxlength="4" min="0" max="1000" id="ex_num" autocomplete="off" value="<?php echo $result_info['ex_num'] ?>" >
                         <span class="num_box" >회</span>
                         <span  class="box2_tit box2_tit_m_d">시간</span>
-                        <input  type="number" name="ex_hour" maxlength="1" min="0" max="9" id="ex_hour" value="<?php echo $result_info['ex_hour'] ?>" >
+                        <input  type="number" name="ex_hour" maxlength="1" min="0" max="9" id="ex_hour" autocomplete="off" value="<?php echo $result_info['ex_hour'] ?>" >
                         <label for="ex_hour">시간</label>
-                        <input  type="number" name="ex_min" maxlength="2" min="0" max="59" id="ex_min" value="<?php echo $result_info['ex_min'] ?>" >
+                        <input  type="number" name="ex_min" maxlength="2" min="0" max="59" id="ex_min" autocomplete="off" value="<?php echo $result_info['ex_min'] ?>" >
                         <label  for="ex_min">분</label>
                         <label for="com_flg" class="box2_tit box2_tit_m_d" >완료 여부</label>
                         <input class="ch_box_m"type="checkbox" name="com_flg" value="1" <?php echo $checked ?>>
