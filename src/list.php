@@ -5,7 +5,7 @@
     define("URL_HEADER",DOC_ROOT."first_pj/src/header.php"); //header 연결
     include_once(URL_DB);
     include_once(URL_DB_COMMON_QUERY);
-    $write_date = date('Ymd').'000000'; // YYYYmmdd000000  ex)2023년04월21일 00시00분00초 날짜비교용
+    $write_date = date('Ymd').'000000'; // YYYYmmdd000000  ex)2023년04월21일 00시00분00초 날짜비교용 db리소스를 최대한 안쓸려고
     // ------------------ 페이징--------------------- 
     $arr_get = $_GET;
     //최초 페이지 열때 페이지 넘버
@@ -23,7 +23,7 @@
     $list_cnt = select_list_count($sel_data_cnt);
 
     // 페이지 최대 갯수 반올림,int로 형변환 
-    // ex)7/3 = 2.3333.. = 3 ,3페이지
+    // ex)10/3 = 3.3333.. = 4 ,3페이지
     $max_page_num = ceil((int)$list_cnt[0]["cnt"] / $limit_num);
 
     // 한 페이지당 n개 페이지
