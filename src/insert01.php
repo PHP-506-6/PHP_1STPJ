@@ -1,19 +1,19 @@
 <?php
-    define("DOC_ROOT",$_SERVER["DOCUMENT_ROOT"]."/");                                           //root 설정
-    define("URL_DB",DOC_ROOT."first_pj/src/common/db_common.php");                              // db연결
-    define("URL_DB_COMMON_QUERY",DOC_ROOT."first_pj/src/db_query/db_common_query.php");         // function 연결
-    define("URL_HEADER",DOC_ROOT."first_pj/src/header.php");                                    //header 연결
+    define("DOC_ROOT",$_SERVER["DOCUMENT_ROOT"]."/");                                           //  root 설정
+    define("URL_DB",DOC_ROOT."first_pj/src/common/db_common.php");                              //  db연결
+    define("URL_DB_COMMON_QUERY",DOC_ROOT."first_pj/src/db_query/db_common_query.php");         //  function 연결
+    define("URL_HEADER",DOC_ROOT."first_pj/src/header.php");                                    //  header 연결
     include_once(URL_DB);
     include_once(URL_DB_COMMON_QUERY);
     
-    $http_method = $_SERVER["REQUEST_METHOD"];                                                  // method 요청
+    $http_method = $_SERVER["REQUEST_METHOD"];                                                  //  method 요청
     // POST일 경우
     if ( $http_method === "POST" )
     {
         $arr_post = $_POST;
-        $result_cnt = insert_list_info( $arr_post );                                            // DB에 list정보 추가
-        header( "Location:list.php" );                                                          // list페이지로  redirect
-        exit();                                                                                 // 종료
+        $result_cnt = insert_list_info( $arr_post );                                            //  DB에 list정보 추가
+        header( "Location:list.php" );                                                          //  list페이지로  redirect
+        exit();                                                                                 //  종료
     }
 ?>
 
