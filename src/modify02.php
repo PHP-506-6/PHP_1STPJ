@@ -6,9 +6,19 @@
     include_once( URL_DB );
     include_once( URL_DB_COMMON_QUERY );
 
-    // test
-    // $result_obj = modify02_print01();
-    // var_dump($result_obj["obj_contents"]);
+    // Request Method 획득
+    $http_method = $_SERVER["REQUEST_METHOD"];
+
+    // POST 방식일 경우
+    if( $http_method === "POST")
+    {
+        $arr_post = $_POST;
+        modify02_excute01($arr_post); // 수정
+
+        // 수정 후 list 페이지로
+        header( "Location: list.php" );
+        exit();
+    }
 
 ?>
 <!DOCTYPE html>
@@ -37,19 +47,3 @@
     </div>
 </body>
 </html>
-<?php
-    // Request Method 획득
-    $http_method = $_SERVER["REQUEST_METHOD"];
-
-    // POST 방식일 경우
-    if( $http_method === "POST")
-    {
-        $arr_post = $_POST;
-        modify02_excute01($arr_post);
-        // 수정 후 list 페이지로
-        header( "Location: list.php" );
-        exit();
-    }
-
-
-?>

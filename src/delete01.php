@@ -17,12 +17,10 @@
             $arr_get = $_GET;
             $list_no = $arr_get["list_no"];
         }
-        else
-        {
-            $first_date = select_first_date();
-            $list_no = $first_date["list_no"];
-        }
-        $result_info = delete01_print01( $list_no );
+
+        $result_info = delete01_print01( $list_no ); // 삭제할 정보 데이터 출력 함수
+
+        // 완료 여부 확인 플래그 생성 ($str_com_flg)
         $str_com_flg = "";
         if( $result_info["com_flg"] === "1" )
         {
@@ -42,7 +40,9 @@
                 "list_no" => $arr_post["list_no"]
             );
         
-        $result_delete = delete01_execute01( $arr_info ); // DELETE
+        $result_delete = delete01_execute01( $arr_info ); // 삭제
+
+        // 삭제 후 리스트 페이지로 이동
         header( "Location: list.php" );
         exit();
     }
@@ -56,6 +56,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Awake</title>
         <link rel="stylesheet" href="css/common.css">
+        <link rel="shortcut icon" href="img/favicon.ico">
     </head>
     <body>
         <div id="wrap">
