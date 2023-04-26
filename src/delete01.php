@@ -64,8 +64,7 @@
             <div class="container container_m_i_d" >
                 <form method="POST" action="delete01.php">
                     <input type="hidden" name="list_no" value="<?php echo $result_info['list_no'] ?>" >     
-                    <!-- 클릭한 리스트를 가져와야 하기 때문에 화면에 출력이 되지 않지만 
-                        리스트의 PK값을 가져와서 데이터를 출력 list_no가 없으면 어떤 데이터를 가져와야 하는지 모름-->
+                    <!-- 데이터를 보낼 때 클릭한 리스트의 PK인 list_no값이 필요하기 때문에 화면에 보이진 않지만 hidden으로 가져온다. -->
                     <div class="form_box1">
                         <label for="list_title">제목</label>
                         <input type="text" name="list_title" id="list_title" required maxlength="50" value="<?php echo $result_info['list_title'] ?>" readonly>

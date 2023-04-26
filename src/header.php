@@ -12,9 +12,10 @@ define("URL_OBJ",DOC_ROOT."first_pj/src/set_obj.php"); // 목표 설정 연결
         // basename : 경로 제외한 파일이름만 선택하는 함수 => ex) 'list.php'
         
         // 파일 이름 확인 플래그 생성 ($flg_modify02)
+        // 이경우에는 modify02.php에서만 'true'를 반환
         $flg_modify02 = basename($_SERVER["PHP_SELF"]) === "modify02.php" ?  true : false;
         $result_obj = modify02_print01(); // 목표 출력하는 함수
-        if( !$flg_modify02 ) { 
+        if( !$flg_modify02 ) {
             include_once( URL_OBJ );
         }
         ?>
