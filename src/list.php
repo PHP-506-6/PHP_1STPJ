@@ -5,7 +5,8 @@
     define("URL_HEADER",DOC_ROOT."first_pj/src/header.php"); //header 연결
     include_once(URL_DB);
     include_once(URL_DB_COMMON_QUERY);
-    $write_date = date('Ymd').'000000'; // YYYYmmdd000000  ex)2023년04월21일 00시00분00초 날짜비교용 db리소스를 최대한 안쓸려고
+    //ex)2023년04월21일 00시00분00초 날짜비교용 db리소스를 최대한 안쓸려고
+    $write_date = date('Ymd').'000000'; // 오늘 날짜값 설정 YYYYmmdd000000  
 
     // ------------------ 페이징--------------------- 
     $arr_get = $_GET;
@@ -25,9 +26,9 @@
     $sel_data_cnt = array("write_date" => $write_date);
     $list_cnt = select_list_count($sel_data_cnt);
 
-    // 페이지 최대 갯수 , 올림,int로 형변환 
+    // 페이지 최대 갯수 , 올림 
     // ex)10/3 = 3.3333.. = 4 ,3페이지
-    $max_page_num = ceil((int)$list_cnt[0]["cnt"] / $limit_num);
+    $max_page_num = ceil($list_cnt[0]["cnt"] / $limit_num);
 
     //1~6, 7~13 페이지당 데이터 보여줄 갯수 
     // (현 페이지 넘버 X 보여줄 행 갯수)-보여줄 행 갯수  ex)(2*3)-3=3
@@ -69,8 +70,8 @@
     $arr_list = list01_print01($arr); //전체 데이터 출력
     
     $arr_cnt = select_flg_count(); //완료된 데이터 갯수 체크
-    $com_cnt = (int)$arr_cnt[0]["cnt"]; //int타입으로 바꿈
-    $total_com_cnt = (int)$list_cnt [0]["cnt"]; //int타입으로 바꿈
+    $com_cnt = $arr_cnt[0]["cnt"]; 
+    $total_com_cnt = $list_cnt [0]["cnt"]; //총 데이터 갯수
 
     //리스트페이지 열 때 이전날짜 데이터 자동 삭제
     $arr_auto_del = array("write_date"=>$write_date);
@@ -118,6 +119,7 @@
              <!-- //다음 -->
         </div>
             <div class="inner">
+                <!-- 완료량 체크 진행바 -->
                 <div class="com-flg">
                     <h2>오늘의 운동 완료량</h2>
                     <?php echo $com_cnt ?> / <?php echo $total_com_cnt ?>
@@ -153,6 +155,7 @@
                                             <span class="material-symbols-outlined">settings_accessibility</span>
                                             <p>
                                             <?php echo $val["ex_num"]."회"?>
+                                            <!-- 횟수에 값 있고 세트에 값이 있을때 -->
                                             <?php if($val["ex_set"] !== null && empty($val["ex_set"]) !== true) { ?>
                                                 <?php echo " X ".$val["ex_set"]."SET"?>
                                             <?php }?>
@@ -163,6 +166,7 @@
                                             <div>
                                             <span class="material-symbols-outlined">settings_accessibility</span>
                                                 <p>
+                                                    <!-- 횟수에 값 있고 세트에 값이 있을때 -->
                                                 <?php if($val["ex_num"] != null && empty($val["ex_num"]) !== true) { ?>
                                                     <?php echo $val["ex_num"]."회 X "?>
                                                 <?php }?>
@@ -178,6 +182,7 @@
                                         <span class="material-symbols-outlined">av_timer</span>
                                         <div>
                                             <?php echo $val["ex_hour"]."시간"?>
+                                            <!-- 시간에 값 있고 분에 값이 있을때 -->
                                             <?php if($val["ex_min"] !== null && empty($val["ex_min"]) !== true) { ?>
                                                 <?php echo $val["ex_min"]."분"?>
                                             <?php }?>
@@ -187,6 +192,7 @@
                                         <div>
                                         <span class="material-symbols-outlined">av_timer</span>
                                             <p>
+                                                <!-- 시간에 값 있고 분에 값이 있을때 -->
                                             <?php if($val["ex_hour"] != null && empty($val["ex_hour"]) !== true) { ?>
                                                 <?php echo $val["ex_hour"]."시간"?>
                                             <?php }?>
