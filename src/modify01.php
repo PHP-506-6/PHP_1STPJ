@@ -7,8 +7,7 @@
     include_once(URL_DB_COMMON_QUERY);
 
     $http_method = $_SERVER["REQUEST_METHOD"];  // REQUEST_METHOD 가져옴  
-    $checked="";    //  체크박스 체크여부
-
+    
     // GET 일 경우
     if( $http_method === "GET" ) // GET 일 경우                        
     {                    
@@ -17,12 +16,13 @@
         {
             $list_no = $arr_get["list_no"]; // $list_no를 $_GET["list_no"]  지정                                                     
         }
-
+        
         $result_info = select_list_info_no( $list_no ); // $list_no에 해당하는 정보 SELECT
-        if($result_info['com_flg'] === "1" )    // $result_info['com_flg']값이 1인 경우 checked
+        $checked="";                            //  checked 플래그 생성
+        if($result_info["com_flg"] === "1" )    // $result_info['com_flg']값이 1인 경우 checked
         {
             $checked = "checked";
-        }    
+        }
     }
     // POST일 경우 
     else                                             
@@ -39,11 +39,11 @@
                     ,"com_flg" => $arr_post["com_flg"]
                     ,"list_no" => $arr_post["list_no"]
                 );
-
-        if(is_null($arr_info["com_flg"]))   // 체크 상태에서 체크를 해제하고 update 시 $arr_flg['com_flg'] 값이 null값이 되는데 
-        {                                   // com_flg는 데이터베이스에서 제약조건이 not null 이라                                                         
-            $arr_info["com_flg"] = "0";     // null 값으로 보내면 실패하고 다시 롤백이 되기 때문에                                                    
-        }                                   // null인 경우 $arr_info["com_flg"] = "0" 을 넣어준다.      
+        
+        if(is_null($arr_info["com_flg"]))   // 체크가 해제된 상태에서 update 시 $arr_info["com_flg"] = null
+        {                                   // com_flg는 데이터베이스에서 제약조건이 not null                                                          
+            $arr_info["com_flg"] = "0";     // null인 경우 $arr_info["com_flg"]에 0을 넣어줌                                                    
+        } 
 
         $result_update = update_list( $arr_info );  // UPDATE
         header( "Location: list.php");  // list.php로 redirect
@@ -66,7 +66,7 @@
             <?php include_once(URL_HEADER) ?>
             <div class="container container_m_i_d" >
                 <form method="post" action="modify01.php">
-                    <input type="hidden" name="list_no" value="<?php echo $result_info['list_no'] ?>" >     
+                    <input type="hidden" name="list_no" value="<?php echo $result_info['list_no'] ?>" >
                     <!-- 데이터를 보낼 때 클릭한 리스트의 PK인 list_no값이 필요하기 때문에 화면에 보이진 않지만 hidden으로 가져온다. -->
                     <div class="form_box1">
                         <label for="list_title">제목</label>
