@@ -25,22 +25,22 @@
     $sel_data_cnt = array("write_date" => $write_date);
     $list_cnt = select_list_count($sel_data_cnt);
 
-    // 페이지 최대 갯수 올림,int로 형변환 
+    // 페이지 최대 갯수 , 올림,int로 형변환 
     // ex)10/3 = 3.3333.. = 4 ,3페이지
     $max_page_num = ceil((int)$list_cnt[0]["cnt"] / $limit_num);
 
     //1~6, 7~13 페이지당 데이터 보여줄 갯수 
-    // (현 페이지 넘버 X 보여줄행갯수)-보여줄행갯수  ex)(2*3)-3=3
+    // (현 페이지 넘버 X 보여줄 행 갯수)-보여줄 행 갯수  ex)(2*3)-3=3
     $offset = ($page_num * $limit_num)- $limit_num;
 
-    //현재 페이지 블럭수 , 현재 몇 번째 블록에 위치한지 (현 페이지 넘버 / 보여줄 페이지 넘버)
+    //현재 페이지 블럭수 , 현재 몇 번째 블록에 위치한지 (현 페이지 넘버 / 한 블럭당 페이지 수)
     //ex) 2 / 3 = 0.6... = 1, 4/3 =1.33.. = 2 
     $now_block = ceil($page_num / $page_block);
 
-    //블럭당 시작 페이지
-    //ex) 1,2,3 페이지 일 때 -> (현재블럭(1) - 1) 3 + 1 = 1
-    //4,5,6 페이지 일 때 -> (현재블럭(2) - 1) 3 + 1 = 4
-    $s_block_num = ($now_block-1) * $page_block+1;
+    //블럭당 시작 페이지 번호 , (현재 블럭 - 1)*한 블럭당 페이지 수 + 1
+    //ex) 1,2,3 페이지 일 때 -> (1-1)*3 + 1 = 1
+    //4,5,6 페이지 일 때 -> (2-1)*3 + 1 = 4
+    $s_block_num = ($now_block-1)*$page_block + 1;
 
     //데이터가 0일 때 경우를 만들어줘야함 그 때는 시작 페이지가 1
     //데이터가 없을 경우 1로
@@ -48,13 +48,13 @@
         $s_block_num=1;
     }
 
-    //블럭당 마지막 페이지
-    //현재 페이지 번호 * 블럭 당 페이지 수
+    //블럭당 마지막 페이지 번호
+    //현재 블럭 번호 * 한 블럭당 페이지 수
     $e_block_num = $now_block * $page_block;
 
-    //마지막 페이지 num가 총 페이지 num보다 크면 실행
+    //블럭당 마지막 페이지 num가 총 페이지 num보다 크면 실행
     // 마지막 번호는 전체 페이지 수를 넘기면 안된다.
-    // 만약 마지막 페이지 번호>전체페이지 라면, 마지막 페이지 번호는 전체 페이지 번호랑 같다
+    // 만약 블럭당 마지막 페이지 번호 > 전체페이지 라면, 마지막 페이지 번호는 전체 페이지 번호랑 같다
     if($e_block_num >= $max_page_num){ 
         $e_block_num = $max_page_num;
     }
@@ -94,7 +94,6 @@
     <div id="wrap">
     <?php include_once(URL_HEADER)?>
     <div class="container container_l">
-        
         <div class="paging">
              <!-- 이전 -->
              <?php if($page_num <=1){ ?>
