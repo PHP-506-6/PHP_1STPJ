@@ -12,10 +12,24 @@
     // GET 일 때
     if ( $http_method === "GET" )
     {
-        if( array_key_exists("list_no",$_GET) ) // $_GET안에 list_no키가 존재 할 때
+        // $_GET안에 list_no키가 존재 할 때
+        if( array_key_exists("list_no",$_GET) )
         {
             $arr_get = $_GET;
             $list_no = $arr_get["list_no"];
+
+            // 삭제된 페이지로 강제로 이동하려고 할 때 내용이없으면 리스트페이지로
+            $result_info_null = delete01_print01( $list_no );
+            if((is_null($result_info_null) || empty($result_info_null)) === TRUE)
+            {
+                header("Location: list.php");
+                exit();
+            }
+        }
+        else 
+        { 
+            echo "잘못된 경로 입니다";
+            exit();
         }
 
         $result_info = delete01_print01( $list_no ); // 삭제할 정보 데이터 출력 함수
@@ -36,10 +50,10 @@
     {
         $arr_post = $_POST;
         $arr_info =
-            array(
-                "list_no" => $arr_post["list_no"]
-            );
-        
+        array(
+            "list_no" => $arr_post["list_no"]
+        );
+    
         $result_delete = delete01_execute01( $arr_info ); // 삭제
 
         // 삭제 후 리스트 페이지로 이동
